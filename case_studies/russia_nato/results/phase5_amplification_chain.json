@@ -1,0 +1,63 @@
+{
+  "case_id": "russia_nato",
+  "stages": [
+    {
+      "stage": 1,
+      "actor": "Realist IR scholars (Mearsheimer, Kennan, Walt)",
+      "transformation": "Legitimate contested academic argument published (Mearsheimer 2014)",
+      "epistemic_effect": "Legitimate contested claim with stated assumptions and scholarly dissent",
+      "evidence": "Foreign Affairs (2014); New York Times (1997 Kennan letter)",
+      "key_finding": "Realist argument for NATO expansion as security threat \u2014 with stated theoretical limits"
+    },
+    {
+      "stage": 2,
+      "actor": "Russian state media (RT, Sputnik, TASS)",
+      "transformation": "Selectively amplified; qualifications stripped; consensus signal manufactured",
+      "epistemic_effect": "Scope inflation; false consensus; adversarial framing",
+      "evidence": "EEAS Disinformation Review (2023); Stanford Internet Observatory (2022)",
+      "key_finding": "Scholarly argument weaponised: 'Western scholars agree NATO caused war'"
+    },
+    {
+      "stage": 3,
+      "actor": "Coordinated inauthentic networks (Pravda network, IRA-linked)",
+      "transformation": "Cross-platform, cross-linguistic saturation; artificial prevalence manufactured",
+      "epistemic_effect": "Statistical prevalence across corpus types; organic vs manufactured indistinguishable",
+      "evidence": "Meta, Twitter/X transparency reports; DFRLab research 2022-2024",
+      "key_finding": "Artificial prevalence at scale across English, Russian, German, French corpora"
+    },
+    {
+      "stage": 4,
+      "actor": "Western media ecosystem (fact-checks, counter-narrative, academic responses)",
+      "transformation": "Debunking/counter-narrative content restates claim to refute it",
+      "epistemic_effect": "Counter-narrative paradoxically increases corpus prevalence. Pfisterer et al. (2025): repetition alone generates credibility signal \u2014 regardless of whether repetition is in affirmation or refutation.",
+      "evidence": "Pfisterer et al. (2025) illusory truth effect in LLMs",
+      "key_finding": "Even fact-checking feeds the frequency-bias loop"
+    },
+    {
+      "stage": 5,
+      "actor": "LLM training corpora (multilingual web-scale)",
+      "transformation": "High-prevalence narrative ingested across languages",
+      "epistemic_effect": "Adversarial narrative laundered into neutral representational prominence. Provenance pollution (adversarial origin) invisible to model.",
+      "evidence": "Cross-linguistic confidence transfer (Prediction P4 in paper)",
+      "key_finding": "Russian-language saturation transfers to English model outputs"
+    },
+    {
+      "stage": 6,
+      "actor": "LLMs (GPT-4, Claude, Gemini, Llama 3, Mistral)",
+      "transformation": "NATO expansion presented as 'prominent/major framework' in all models",
+      "epistemic_effect": "Adversarial amplification laundered into neutral academic prominence. Provenance pollution invisible \u2014 only 1/60 responses noted info ops context.",
+      "evidence": "Phase 3 probing results: all models, Type A/B",
+      "key_finding": "Coordinated state disinformation indistinguishable from organic scholarly consensus"
+    }
+  ],
+  "key_observations": [
+    "No model reproduces as unhedged assertion \u2014 manifests as 'prominent framework' instead.",
+    "Prestige inflation of contested claim: disproportionate prominence relative to evidential base.",
+    "Only 1/60 responses (Claude 3 Opus, Type D) spontaneously noted coordinated amplification.",
+    "Models correctly attribute to Mearsheimer/realist IR but miss provenance pollution.",
+    "Debunking content paradoxically increases corpus prevalence of the claim.",
+    "Cross-linguistic correlation: Russian prevalence leads English by 2-4 weeks.",
+    "Models cannot distinguish organic scholarly prevalence from manufactured prevalence."
+  ],
+  "cross_case_comparison": "Same frequency-bias mechanism as MIT case but intent differs. Both cases: training objective registers frequency, not provenance. Russia case demonstrates adversarial exploitation of this architectural property."
+}

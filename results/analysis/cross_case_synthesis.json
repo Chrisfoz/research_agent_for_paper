@@ -1,0 +1,11 @@
+{
+  "structural_unity": "Both cases demonstrate that circular epistemic authority operates through the same frequency-bias mechanism regardless of intent. The training objective (next-token prediction) is agnostic to whether prevalence arose from prestige-driven convenience or deliberate saturation.",
+  "key_difference": {
+    "mit_95": "Driver is prestige and convenience (easier to cite 'MIT says 95%')",
+    "russia_nato": "Driver is deliberate adversarial saturation",
+    "architectural_consequence": "Identical \u2014 frequency registers as confidence"
+  },
+  "debunking_paradox": "In the adversarial case, counter-narrative content increases prevalence of the target claim by restating it. This is predicted by Pfisterer et al. (2025): frequency-bias mechanism does not distinguish 'claim X is true' from 'claim X is false' at the level of token co-occurrence statistics.",
+  "provenance_blindness": "Neither case requires the model to be 'fooled' in any intentional sense. The model faithfully represents the statistical signature of its training data. The epistemic failure is in the source ecosystem, not in the generation process.",
+  "governance_implication": "Mitigations focused on model outputs (RLHF, fine-tuning) are insufficient. Epistemic infrastructure governance requires: (1) corpus provenance weighting, (2) derivative deduplication, (3) adversarial prevalence detection at corpus ingestion time."
+}

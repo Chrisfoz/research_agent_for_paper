@@ -1,0 +1,65 @@
+{
+  "case_id": "russia_nato",
+  "primary_source": "Mearsheimer (2014) + Kennan (1997) - academic realist IR",
+  "primary_source_count": 1,
+  "derivative_count": 30,
+  "derivative_to_primary_ratio": 30.0,
+  "search_results": [
+    {
+      "query": "NATO expansion caused Ukraine war",
+      "result_count_estimate": 12000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: primary variant"
+    },
+    {
+      "query": "NATO provoked Russia Ukraine",
+      "result_count_estimate": 8000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: variant"
+    },
+    {
+      "query": "NATO responsible for war Ukraine",
+      "result_count_estimate": 6000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: variant"
+    },
+    {
+      "query": "Mearsheimer NATO Ukraine",
+      "result_count_estimate": 4000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: primary scholar source"
+    },
+    {
+      "query": "Mearsheimer why Ukraine crisis west fault",
+      "result_count_estimate": 3000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: primary source"
+    },
+    {
+      "query": "NATO \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043d\u0438\u0435 \u043f\u0440\u0438\u0447\u0438\u043d\u0430 \u0432\u043e\u0439\u043d\u044b \u0423\u043a\u0440\u0430\u0438\u043d\u0430",
+      "result_count_estimate": 15000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: Russian-language variant"
+    }
+  ],
+  "time_series": {
+    "2014": 500,
+    "2015": 600,
+    "2016": 700,
+    "2017": 800,
+    "2018": 900,
+    "2019": 1000,
+    "2020": 1100,
+    "2021": 3000,
+    "2022": 25000,
+    "2023": 18000,
+    "2024": 12000
+  },
+  "notes": "Derivative-to-primary ratio ~30:1 (harder to establish than MIT case). Unique: legitimate scholarly source + adversarial amplification both present. Cross-linguistic signature: Russian prevalence leads English by 2-4 weeks. Temporal clustering around: Crimea 2014, Donbas 2021-2022, invasion Feb 2022."
+}

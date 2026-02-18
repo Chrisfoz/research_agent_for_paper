@@ -1,0 +1,84 @@
+{
+  "case_id": "mit_95",
+  "canonical_claim": "MIT found that 95% of corporate AI investments fail",
+  "original_finding": "A survey-based report discussing the gap between AI ambitions and realised value, with various percentage breakdowns regarding AI deployment stages. The '95%' figure does not appear as a standalone 'failure rate' finding.",
+  "original_source": "Ransbotham, S., Khodabandeh, S., Fehling, R., LaFountain, B., & Kiron, D. (2019). Winning With AI. MIT Sloan Management Review / Boston Consulting Group.",
+  "source_type": "Survey-based industry report (executive interviews, not controlled empirical measurement)",
+  "methodology_note": "Multi-year survey of executives on AI adoption and value realisation. Findings expressed as survey percentages about perceived value gaps, not as empirical measurement of investment outcomes.",
+  "transformation_points": [
+    "(a) 'MIT Sloan Management Review + BCG survey' compressed to 'MIT study'",
+    "(b) Nuanced value-realisation gap findings compressed to '95% failure'",
+    "(c) Survey-based executive perception data reframed as empirical measurement",
+    "(d) Qualified finding presented as unqualified institutional claim"
+  ],
+  "provenance_chain": [
+    {
+      "stage": 1,
+      "actor": "MIT Sloan Management Review + Boston Consulting Group",
+      "document": "Winning With AI (2019)",
+      "date": "2019",
+      "claim_as_stated": "Survey report on AI value realisation gaps. Various percentage findings on deployment stages and value capture. No '95% failure' headline.",
+      "transformation": "N/A (original source)",
+      "epistemic_effect": "Primary source with stated methodology and scope limitations",
+      "url": "https://sloanreview.mit.edu/projects/winning-with-ai/",
+      "notes": ""
+    },
+    {
+      "stage": 2,
+      "actor": "Business media (Forbes, Harvard Business Review, etc.)",
+      "document": "Multiple news/opinion articles, 2019-2021",
+      "date": "2019-2021",
+      "claim_as_stated": "MIT study: 95% of AI projects fail to deliver ROI",
+      "transformation": "Institutional attribution inflated from 'MIT SMR+BCG survey' to 'MIT study'. Nuanced findings compressed to single headline figure.",
+      "epistemic_effect": "Attribution inflation; scope compression; loss of methodology note",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 3,
+      "actor": "Secondary media, blogs, LinkedIn, consulting decks",
+      "document": "Thousands of derivative articles and presentations",
+      "date": "2020-2023",
+      "claim_as_stated": "Research from MIT shows 95% of AI investments fail",
+      "transformation": "Repeated across platforms as established fact without original source",
+      "epistemic_effect": "Derivative redundancy exceeds primary by >50:1; qualifications lost",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 4,
+      "actor": "LLM training corpora (Common Crawl, C4, The Pile, etc.)",
+      "document": "Web-scale text corpora",
+      "date": "2022-2024",
+      "claim_as_stated": "[As ingested from derivative web content]",
+      "transformation": "High-prevalence claim ingested at scale across multiple corpus sources",
+      "epistemic_effect": "Statistical prevalence converts to high token likelihood; corpus-term-frequency heuristic (McKenna et al. 2023) activates",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 5,
+      "actor": "LLMs (GPT-4, Claude, Gemini, Llama 3, Mistral)",
+      "document": "Model outputs in response to queries",
+      "date": "2023-2025",
+      "claim_as_stated": "Research from MIT shows that 95% of AI projects fail to deliver ROI",
+      "transformation": "Frequency bias converts prevalence to confident assertion",
+      "epistemic_effect": "Claim reproduced with institutional authority framing; original source qualifications absent",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 6,
+      "actor": "Downstream users, new publications, reports",
+      "document": "New articles, board presentations, policy documents",
+      "date": "2023-2026",
+      "claim_as_stated": "According to MIT research, 95% of AI investments fail",
+      "transformation": "LLM outputs published as new derivative content",
+      "epistemic_effect": "Feedback loop: new corpus content reinforces prevalence",
+      "url": null,
+      "notes": ""
+    }
+  ],
+  "derivative_to_primary_ratio_estimate": 50.0,
+  "notes": ""
+}

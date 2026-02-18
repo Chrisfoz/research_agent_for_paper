@@ -8,7 +8,7 @@ Identifies:
   - Points where attribution was lost
   - Points where scope was inflated
   - Points where qualifications were dropped
-  - The feedback loop (LLM output → new derivative content)
+  - The feedback loop (LLM output -> new derivative content)
 
 Outputs:
   - Annotated amplification chain (JSON)
@@ -49,19 +49,20 @@ class AmplificationChain:
             json.dump(self.to_dict(), f, indent=2)
 
     def print_chain(self):
-        print(f"\n=== Amplification Chain: {self.case_id} ===")
+        def p(s): print(s.encode("ascii", "replace").decode())
+        p(f"\n=== Amplification Chain: {self.case_id} ===")
         for s in self.stages:
-            print(f"\nStage {s.stage}: {s.actor}")
-            print(f"  Transformation: {s.transformation}")
-            print(f"  Epistemic Effect: {s.epistemic_effect}")
+            p(f"\nStage {s.stage}: {s.actor}")
+            p(f"  Transformation: {s.transformation}")
+            p(f"  Epistemic Effect: {s.epistemic_effect}")
             if s.key_finding:
-                print(f"  Key Finding: {s.key_finding}")
+                p(f"  Key Finding: {s.key_finding}")
             if s.evidence:
-                print(f"  Evidence: {s.evidence}")
+                p(f"  Evidence: {s.evidence}")
         if self.key_observations:
-            print("\nKey Observations:")
+            p("\nKey Observations:")
             for obs in self.key_observations:
-                print(f"  • {obs}")
+                p(f"  * {obs}")
 
 
 def build_mit_chain() -> AmplificationChain:
@@ -112,7 +113,7 @@ def build_mit_chain() -> AmplificationChain:
         stage=4,
         actor="LLM training corpora (Common Crawl, C4, The Pile, web crawls)",
         transformation="High-prevalence claim ingested at scale across corpus",
-        epistemic_effect="Statistical prevalence → high token likelihood (McKenna et al. 2023)",
+        epistemic_effect="Statistical prevalence -> high token likelihood (McKenna et al. 2023)",
         evidence="Frequency-bias mechanism: corpus-term-frequency heuristic confirmed architecturally",
         key_finding="Prevalence substitutes for validity at training time",
     ))

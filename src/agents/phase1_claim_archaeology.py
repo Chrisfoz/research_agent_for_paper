@@ -53,16 +53,17 @@ class ClaimArchaeology:
             json.dump(self.to_dict(), f, indent=2)
 
     def print_chain(self):
-        print(f"\n=== Claim Archaeology: {self.case_id} ===")
-        print(f"Canonical claim: {self.canonical_claim}")
-        print(f"Original finding: {self.original_finding}")
-        print(f"Original source: {self.original_source}\n")
+        def p(s): print(s.encode("ascii", "replace").decode())
+        p(f"\n=== Claim Archaeology: {self.case_id} ===")
+        p(f"Canonical claim: {self.canonical_claim}")
+        p(f"Original finding: {self.original_finding}")
+        p(f"Original source: {self.original_source}\n")
         for node in self.provenance_chain:
-            print(f"  Stage {node.stage}: {node.actor}")
-            print(f"    Document: {node.document} ({node.date})")
-            print(f"    Claim: {node.claim_as_stated}")
-            print(f"    Transformation: {node.transformation}")
-            print(f"    Epistemic effect: {node.epistemic_effect}")
+            p(f"  Stage {node.stage}: {node.actor}")
+            p(f"    Document: {node.document} ({node.date})")
+            p(f"    Claim: {node.claim_as_stated}")
+            p(f"    Transformation: {node.transformation}")
+            p(f"    Epistemic effect: {node.epistemic_effect}")
             print()
 
 

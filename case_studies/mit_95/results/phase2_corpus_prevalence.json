@@ -1,0 +1,60 @@
+{
+  "case_id": "mit_95",
+  "primary_source": "Ransbotham et al. (2019) MIT SMR+BCG - Winning With AI",
+  "primary_source_count": 1,
+  "derivative_count": 50,
+  "derivative_to_primary_ratio": 50.0,
+  "search_results": [
+    {
+      "query": "MIT 95% AI fail",
+      "result_count_estimate": 8000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: primary variant"
+    },
+    {
+      "query": "MIT 95 percent AI investments fail",
+      "result_count_estimate": 3000,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: variant"
+    },
+    {
+      "query": "MIT study AI failure rate 95",
+      "result_count_estimate": 2500,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: variant"
+    },
+    {
+      "query": "MIT artificial intelligence projects fail 95",
+      "result_count_estimate": 1500,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: variant"
+    },
+    {
+      "query": "Ransbotham 2019 winning with AI MIT",
+      "result_count_estimate": 150,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: primary source search"
+    },
+    {
+      "query": "MIT Sloan Management Review BCG AI 2019",
+      "result_count_estimate": 200,
+      "method": "estimated",
+      "date": "2024",
+      "notes": "Method: primary source search"
+    }
+  ],
+  "time_series": {
+    "2019": 100,
+    "2020": 350,
+    "2021": 800,
+    "2022": 2500,
+    "2023": 8000,
+    "2024": 12000
+  },
+  "notes": "Derivative-to-primary ratio >50:1 (from paper). Time series is indicative/estimated from paper description. Claim appears in: business journalism, consulting whitepapers, conference presentations, LinkedIn, blogs, Wikipedia talk pages, Reddit, podcast transcripts, YouTube descriptions, academic grey literature, government policy documents, AI vendor marketing."
+}

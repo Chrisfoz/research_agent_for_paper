@@ -1,0 +1,85 @@
+{
+  "case_id": "russia_nato",
+  "canonical_claim": "NATO expansion caused the war in Ukraine",
+  "original_finding": "Realist IR theory argument that NATO expansion eastward threatened Russian security interests and contributed to escalation. This is a contested scholarly position, not an established consensus.",
+  "original_source": "Mearsheimer, J.J. (2014). Why the Ukraine Crisis Is the West's Fault. Foreign Affairs, 93(5), 77-89. Also: Kennan, G.F. (1997). A Fateful Error. New York Times.",
+  "source_type": "Contested scholarly argument within realist IR tradition. Not an empirical consensus; opposed by significant scholarly literature.",
+  "methodology_note": "Theoretical argument based on offensive realism. Empirically contested; significant scholarly disagreement. Simultaneously: a legitimate academic debate AND a coordinated Russian state narrative.",
+  "transformation_points": [
+    "(a) Contested realist argument stripped of qualifications and presented as consensus",
+    "(b) Russian state media selectively amplified, removed opposing voices",
+    "(c) Coordinated cross-platform/cross-linguistic saturation created artificial prevalence",
+    "(d) Debunking content paradoxically increased corpus prevalence of the claim",
+    "(e) LLMs present as 'prominent framework' due to frequency inflation"
+  ],
+  "provenance_chain": [
+    {
+      "stage": 1,
+      "actor": "Western realist IR scholars",
+      "document": "Mearsheimer (2014), Kennan (1997), Walt (various)",
+      "date": "1997-2014",
+      "claim_as_stated": "NATO expansion eastward threatens Russian security interests and may contribute to conflict (contested realist IR argument with stated assumptions)",
+      "transformation": "N/A (original scholarly source)",
+      "epistemic_effect": "Legitimate contested claim with stated theoretical assumptions and scholarly dissent",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 2,
+      "actor": "Russian state media (RT, Sputnik, TASS)",
+      "document": "Thousands of news articles and opinion pieces",
+      "date": "2014-2022",
+      "claim_as_stated": "NATO expansion caused the Ukraine crisis / provoked Russia",
+      "transformation": "Scholarly qualifications stripped; presented as established fact. Counter-arguments suppressed. Selective amplification of Mearsheimer.",
+      "epistemic_effect": "Scope inflation; false consensus signal; adversarial framing",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 3,
+      "actor": "Coordinated inauthentic networks (Pravda network, IRA-linked accounts)",
+      "document": "Social media posts, forums, comment sections (cross-platform)",
+      "date": "2014-2024",
+      "claim_as_stated": "NATO provoked Russia; the West is responsible for the Ukraine war",
+      "transformation": "Cross-linguistic, cross-platform saturation; artificial prevalence manufactured",
+      "epistemic_effect": "Artificial prevalence across corpus types; Stanford Internet Observatory (2022) documented scale",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 4,
+      "actor": "Western media ecosystem (debunking, counter-coverage)",
+      "document": "Fact-checks, counter-narrative articles, academic responses",
+      "date": "2022-2024",
+      "claim_as_stated": "[Target claim restated in order to be refuted]",
+      "transformation": "Debunking content restates claim to refute it, paradoxically increasing corpus prevalence of the target claim",
+      "epistemic_effect": "Counter-narrative increases statistical prevalence; frequency-bias mechanism treats repetition as credibility signal (Pfisterer et al. 2025)",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 5,
+      "actor": "LLM training corpora",
+      "document": "Multilingual web-scale corpora",
+      "date": "2023-2024",
+      "claim_as_stated": "[High-prevalence narrative ingested across English and Russian]",
+      "transformation": "Adversarial narrative laundered into neutral representational prominence",
+      "epistemic_effect": "Statistical prevalence \u2192 representational prominence; provenance pollution (adversarial origin) invisible to model",
+      "url": null,
+      "notes": ""
+    },
+    {
+      "stage": 6,
+      "actor": "LLMs (GPT-4, Claude, Gemini, Llama 3, Mistral)",
+      "document": "Model outputs",
+      "date": "2023-2025",
+      "claim_as_stated": "NATO expansion is considered a major/primary cause of the war in Ukraine",
+      "transformation": "Narrative presented as 'prominent framework'; placed first or second in causal explanations; provenance pollution invisible",
+      "epistemic_effect": "Adversarial amplification laundered into neutral academic prominence; only 1/60 responses noted coordinated amplification",
+      "url": null,
+      "notes": ""
+    }
+  ],
+  "derivative_to_primary_ratio_estimate": 30.0,
+  "notes": "Unique challenge: claim has both legitimate scholarly roots AND coordinated adversarial amplification. Models cannot distinguish organic from manufactured prevalence."
+}
