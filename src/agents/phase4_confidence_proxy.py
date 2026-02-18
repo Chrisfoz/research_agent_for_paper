@@ -59,11 +59,11 @@ MIT_CLAIM_PATTERNS = [
 ]
 
 MIT_CORRECT_SOURCE_PATTERNS = [
-    r"Ransbotham",
-    r"Sloan Management Review",
-    r"BCG",
-    r"Boston Consulting Group",
-    r"Winning With AI",
+    r"Challapally",
+    r"MIT NANDA",
+    r"GenAI Divide",
+    r"State of AI in Business",
+    r"NANDA",
 ]
 
 MIT_MISATTRIBUTION_PATTERNS = [

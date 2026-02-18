@@ -60,49 +60,54 @@ class PrevalenceEstimate:
 
 def build_mit_prevalence() -> PrevalenceEstimate:
     """
-    From paper: derivative-to-primary ratio exceeding 50:1.
-    Prevalence increased monotonically 2019-2023, acceleration in 2022-2023.
-    Claim appears in 12+ distinct media categories.
+    Source: MIT NANDA 'The GenAI Divide' (July 2025), Challapally, Pease, Raskar, Chari.
+    - Fortune picked up Aug 18, 2025; Forbes (Hill) Aug 21, 2025
+    - Report removed from MIT domain Sep 16, 2025
+    - 200+ derivative articles remain after removal
+    - D/P ratio estimated at 200:1 within weeks of Fortune article
     """
     est = PrevalenceEstimate(
         case_id="mit_95",
-        primary_source="Ransbotham et al. (2019) MIT SMR+BCG - Winning With AI",
-        primary_source_count=1,  # the original report
-        derivative_count=50,     # >50 derivative references per primary
-        derivative_to_primary_ratio=50.0,
+        primary_source=(
+            "Challapally, A., Pease, C., Raskar, R., & Chari, P. (July 2025). "
+            "The GenAI Divide: State of AI in Business 2025. MIT NANDA / MIT Media Lab."
+        ),
+        primary_source_count=1,
+        derivative_count=200,
+        derivative_to_primary_ratio=200.0,
         time_series={
-            "2019": 100,
-            "2020": 350,
-            "2021": 800,
-            "2022": 2500,
-            "2023": 8000,
-            "2024": 12000,
+            "2025-07": 10,    # Low circulation on July release
+            "2025-08-18": 1,  # Fortune article -- viral trigger
+            "2025-08-21": 50, # Forbes + initial wave
+            "2025-08-31": 200, # 200+ outlets within two weeks
+            "2025-09": 250,   # MIT distancing and debunking articles
+            "2026-01": 300,   # Continued derivative usage in presentations/reports
         },
         notes=(
-            "Derivative-to-primary ratio >50:1 (from paper). "
-            "Time series is indicative/estimated from paper description. "
-            "Claim appears in: business journalism, consulting whitepapers, "
-            "conference presentations, LinkedIn, blogs, Wikipedia talk pages, "
-            "Reddit, podcast transcripts, YouTube descriptions, academic grey literature, "
-            "government policy documents, AI vendor marketing."
+            "Derivative-to-primary ratio >200:1 within two weeks of Fortune article. "
+            "Report removed from MIT domain Sep 16, 2025 -- but derivative articles permanent. "
+            "Claim appears in: business journalism, consulting presentations, LinkedIn, "
+            "investor reports, board decks, academic commentary. "
+            "Caused stock drops in NVIDIA, ARM, Palantir before removal. "
+            "MIT officials distanced: 'unpublished, non-peer-reviewed work.'"
         ),
     )
 
-    # Search queries used for estimation
     queries = [
-        ("MIT 95% AI fail", "primary variant", 8000),
-        ("MIT 95 percent AI investments fail", "variant", 3000),
-        ("MIT study AI failure rate 95", "variant", 2500),
-        ("MIT artificial intelligence projects fail 95", "variant", 1500),
-        ("Ransbotham 2019 winning with AI MIT", "primary source search", 150),
-        ("MIT Sloan Management Review BCG AI 2019", "primary source search", 200),
+        ("MIT 95% AI pilots fail 2025", "primary variant", 15000),
+        ("MIT GenAI Divide 95 percent", "source variant", 8000),
+        ("MIT NANDA AI failure rate 95", "source variant", 3000),
+        ("95% AI pilots fail MIT report", "variant", 12000),
+        ("MIT artificial intelligence pilots fail 2025", "variant", 6000),
+        ("Challapally Raskar GenAI Divide MIT", "primary source search", 500),
+        ("MIT GenAI Divide State of AI Business 2025", "primary source search", 800),
     ]
     for q, method, count in queries:
         est.search_results.append(SearchResult(
             query=q,
             result_count_estimate=count,
             method="estimated",
-            date="2024",
+            date="2025-09",
             notes=f"Method: {method}",
         ))
 

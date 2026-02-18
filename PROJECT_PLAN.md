@@ -29,8 +29,9 @@ python src/main.py --case all --phase 1
 - `case_studies/russia_nato/results/phase1_claim_archaeology.json`
 
 **What to verify:**
-- [ ] MIT: Confirm Ransbotham et al. (2019) is the true original source
-- [ ] MIT: Verify "Winning With AI" report is the MIT SMR+BCG document
+- [ ] MIT: Original source is MIT NANDA (Challapally et al. July 2025) -- confirmed
+- [ ] MIT: Verify Fortune/Forbes amplification dates (Aug 18/21 2025) -- confirmed
+- [ ] MIT: Confirm report removal date from MIT domain (Sep 16 2025) -- confirmed
 - [ ] Russia: Confirm Mearsheimer (2014) Foreign Affairs article details
 - [ ] Russia: Verify Stanford Internet Observatory (2022) report reference
 - [ ] Both: Check any additional transformation points not yet documented
@@ -54,9 +55,9 @@ python src/agents/phase2_corpus_prevalence.py --case all --live-search
 - `case_studies/russia_nato/results/phase2_corpus_prevalence.json`
 
 **What to verify/enhance:**
-- [ ] MIT: Search Google for "MIT 95% AI fail" variants — count results
-- [ ] MIT: Check Google Scholar for citation count of Ransbotham et al. 2019
-- [ ] MIT: Check Google Trends time series 2019-2025 for "MIT AI failure"
+- [ ] MIT: Search Google for "MIT 95% AI pilots fail 2025" variants — count results
+- [ ] MIT: Count derivative articles from Fortune/Forbes amplification (Aug-Sep 2025)
+- [ ] MIT: Verify report removal from MIT domain (no longer accessible)
 - [ ] Russia: Cross-check derivative-to-primary ratio estimate
 - [ ] Both: Consider Factiva/GDELT for academic-grade corpus counts
 
@@ -165,7 +166,7 @@ Claude Code sub-agents will be deployed for parallel workstreams:
 
 | Agent | Task | When |
 |-------|------|------|
-| `Explore` | Verify literature references (Ransbotham 2019, Mearsheimer 2014, etc.) | Phase 1 |
+| `Explore` | Verify literature references (Challapally et al. 2025, Mearsheimer 2014, etc.) | Phase 1 |
 | `general-purpose` | Web search for corpus prevalence estimates | Phase 2 |
 | `Bash` | Execute Phase 3 API calls in parallel per model | Phase 3 |
 | `Explore` | Analyse Phase 4 coded results for patterns | Phase 4 |
@@ -188,7 +189,7 @@ Claude Code sub-agents will be deployed for parallel workstreams:
 ### MIT Case Study
 - [ ] D/P ratio confirmed > 10:1 (paper claims > 50:1)
 - [ ] Type A/B reproduction rate ≥ 80% across models
-- [ ] Correct attribution (Ransbotham et al.) ≤ 10% of responses
+- [ ] Correct attribution (Challapally et al. / MIT NANDA + scope caveat) ≤ 10% of responses
 - [ ] Response consistency ≥ 85% within models
 
 ### Russia Case Study

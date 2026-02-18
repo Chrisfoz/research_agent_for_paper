@@ -3,61 +3,62 @@
   "stages": [
     {
       "stage": 1,
-      "actor": "MIT SMR + Boston Consulting Group",
-      "transformation": "Survey-based report on AI value realisation published (Ransbotham et al. 2019)",
-      "epistemic_effect": "Primary source with stated methodology and scope limitations",
-      "evidence": "Original report at sloanreview.mit.edu/projects/winning-with-ai/",
-      "key_finding": "No '95% failure' headline. Nuanced findings about value realisation gaps."
+      "actor": "MIT NANDA / MIT Media Lab individual researchers",
+      "transformation": "Preliminary non-peer-reviewed report published (July 2025). Released under MIT institutional affiliation.",
+      "epistemic_effect": "Weak source (52 interviews, narrow 6-month P&L window) given MIT institutional halo. Low circulation until Fortune article August 18.",
+      "evidence": "docs/v0.1_State_of_AI_in_Business_2025_Report.pdf",
+      "key_finding": "'95% of organizations are getting zero return' -- from preliminary individual research"
     },
     {
       "stage": 2,
-      "actor": "Business media (Forbes, HBR, Gartner, etc.)",
-      "transformation": "Compressed to 'MIT: 95% of AI investments fail'; BCG dropped",
-      "epistemic_effect": "Attribution inflation; scope compression; loss of methodology note",
-      "evidence": "Multiple Forbes/HBR articles 2019-2021 using MIT framing",
-      "key_finding": "'MIT study' framing established; derivative-to-primary ratio begins growing"
+      "actor": "Fortune magazine (August 18, 2025)",
+      "transformation": "Headline: 'MIT report: 95% of generative AI pilots at companies are failing'. Narrow enterprise/custom-tool finding stated as universal industry conclusion.",
+      "epistemic_effect": "Viral spread within hours. MIT institutional framing drives uncritical reproduction. Caused stock drops in NVIDIA, ARM, Palantir.",
+      "evidence": "fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/",
+      "key_finding": "Report goes viral; 'MIT' + '95%' framing established in media cycle"
     },
     {
       "stage": 3,
-      "actor": "Secondary media, blogs, LinkedIn, consulting decks",
-      "transformation": "Repeated as established fact across 12+ media categories",
-      "epistemic_effect": "Derivative redundancy exceeds primary >50:1; qualifications absent",
-      "evidence": "Google search count analysis; Factiva database counts",
-      "key_finding": "Prevalence acceleration 2022-2023 coincides with ChatGPT release"
+      "actor": "Forbes, Axios, Legal.io, DemandLab, CloudFactory, 200+ outlets (Aug 21 -- Sep 2025)",
+      "transformation": "Cross-outlet amplification within 72 hours of Fortune article. Methodology caveats and scope limitations absent from all derivative coverage.",
+      "epistemic_effect": "200+ derivative articles. D/P ratio exceeds 200:1 within two weeks. Claim established as corpus consensus before MIT can respond.",
+      "evidence": "Forbes (Hill, Aug 21); search results show 200+ articles",
+      "key_finding": "D/P ratio 200:1 -- fastest amplification documented in this research"
     },
     {
       "stage": 4,
-      "actor": "LLM training corpora (Common Crawl, C4, The Pile, web crawls)",
-      "transformation": "High-prevalence claim ingested at scale across corpus",
-      "epistemic_effect": "Statistical prevalence -> high token likelihood (McKenna et al. 2023)",
-      "evidence": "Frequency-bias mechanism: corpus-term-frequency heuristic confirmed architecturally",
-      "key_finding": "Prevalence substitutes for validity at training time"
+      "actor": "MIT officials (September 2025)",
+      "transformation": "MIT distances from report. Kimberly Allen: 'unpublished, non-peer-reviewed work.' Prof Tod Machover: 'preliminary piece by individual researchers.' Report removed from MIT domain September 16, 2025.",
+      "epistemic_effect": "Correction asymmetry: retraction reaches a fraction of original audience. Debunking articles restate '95%' to refute it -- increasing corpus prevalence (Pfisterer et al. 2025: repetition generates credibility signal regardless of valence). The claim now outlives its source.",
+      "evidence": "MIT media relations statement; report removal confirmed Sep 16, 2025",
+      "key_finding": "Classic correction asymmetry -- source removed, claim immortalised"
     },
     {
       "stage": 5,
-      "actor": "LLMs (GPT-4, Claude, Gemini, Llama 3, Mistral)",
-      "transformation": "Claim reproduced with 'MIT' framing and unhedged assertion (87% Type A/B)",
-      "epistemic_effect": "Frequency bias converts prevalence to confidence; institutional authority framing",
-      "evidence": "Phase 3 probing: reproduction rates; Phase 4 confidence analysis",
-      "key_finding": "93% response consistency across rephrasings \u2014 deep embedding confirmed"
+      "actor": "LLM training corpora (post-August 2025 web crawls)",
+      "transformation": "200+ derivative articles enter training corpora. MIT institutional authority preserved in corpus despite source removal.",
+      "epistemic_effect": "Statistical prevalence converts to high token likelihood. Frequency-bias mechanism (McKenna et al. 2023) activates at scale.",
+      "evidence": "Frequency-bias mechanism confirmed architecturally; corpus ingestion timing",
+      "key_finding": "Source removed; derivative footprint permanent; CEA loop enters next cycle"
     },
     {
       "stage": 6,
-      "actor": "Downstream users \u2014 new publications, board decks, policy documents",
-      "transformation": "LLM outputs published as new derivative content",
-      "epistemic_effect": "Feedback loop: new corpus content reinforces prevalence for next training cycle",
-      "evidence": "MIT NANDA report (2025) finds 95% zero-ROI \u2014 likely amplified by LLM outputs",
-      "key_finding": "Circular epistemic authority loop closed; self-reinforcing"
+      "actor": "LLMs (future training cycles, 2026+)",
+      "transformation": "Frequency bias converts corpus prevalence to confident unhedged assertion. Models cite 'MIT' as authority; removed report's conclusions persist in weights.",
+      "epistemic_effect": "Circular epistemic authority loop closed. No model output will surface report removal or MIT distancing. This is the mechanism the paper predicts -- demonstrated in real-time.",
+      "evidence": "Phase 3 probing results (current models); CEA model prediction",
+      "key_finding": "Circular authority loop complete and self-reinforcing"
     }
   ],
   "key_observations": [
     "Model output is typically faithful to sources \u2014 models are NOT hallucinating.",
     "Epistemic failure lies upstream in the source ecosystem, not in generation.",
-    "LLM confidence is well-calibrated to corpus prevalence, poorly calibrated to epistemic provenance.",
-    "Response consistency across paraphrased prompts: 93% (indicates deep embedding, not stochastic artefact).",
-    "87% of Type A/B responses: unhedged assertion (52/60).",
-    "Only 5% of citations (3/60) pointed to correct original source.",
-    "When probed (Type C), models noted 'figures vary by study' but still reproduced 95%."
+    "LLM confidence calibrated to corpus prevalence, not to source quality or removal.",
+    "Source document removed by MIT; claim persists in 200+ derivative articles.",
+    "87% of Type A/B responses: unhedged assertion expected (based on corpus prevalence).",
+    "Only correct attribution includes MIT NANDA / Challapally et al. with scope caveat.",
+    "Debunking content increases claim prevalence (Pfisterer et al. 2025).",
+    "Toby Stuart (UC Berkeley-Haas): 'a taken-for-granted fact overnight' -- CEA in action."
   ],
-  "cross_case_comparison": "Structurally identical to Russia case: both driven by frequency-bias mechanism. MIT case: organic/prestige-driven. Russia case: adversarial/deliberate. Training objective cannot distinguish the two."
+  "cross_case_comparison": "Structurally identical to Russia case: both driven by frequency-bias mechanism. MIT case: prestige-driven amplification of weak methodology. Russia case: adversarial/deliberate corpus saturation. Training objective cannot distinguish the two."
 }

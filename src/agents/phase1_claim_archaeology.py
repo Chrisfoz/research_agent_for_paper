@@ -69,282 +69,192 @@ class ClaimArchaeology:
 
 # ─── Pre-populated: MIT 95% Case ────────────────────────────────────────────
 #
-# CORRECTED UNDERSTANDING (verified February 2026):
+# SOURCE (verified February 2026):
 #
 # The Forbes article (Andrea Hill, Aug 21 2025) cites the MIT NANDA 2025 report
-# ("The GenAI Divide: State of AI in Business 2025") as its primary source --
-# NOT the Ransbotham/BCG 2019 "Winning With AI" report.
+# ("The GenAI Divide: State of AI in Business 2025", Challapally, Pease, Raskar,
+# Chari) as its source. This is the report in docs/v0.1_State_of_AI_in_Business_2025_Report.pdf
 #
-# This creates a TWO-VINTAGE structure:
-#   Lineage A (2019): Ransbotham/BCG/MIT SMR -- misattributed as "MIT study: 95% fail"
-#   Lineage B (2025): MIT NANDA -- weak/preliminary report, subsequently removed by MIT
-#
-# The circular epistemic authority loop runs ACROSS both lineages:
-#   old misattribution --> LLM corpus prevalence --> normalized "MIT 95%" framing -->
-#   MIT NANDA 2025 report resonates with this framing --> rapid viral amplification -->
-#   MIT removes report but 200+ derivative articles remain --> LLMs trained on new wave -->
-#   future LLMs reproduce "MIT 95%" with even higher authority, drawing on both lineages
-#
-# Key facts confirmed by research:
-#   - MIT NANDA report posted Aug 18 2025, removed Sep 16 2025
-#   - MIT officials: "unpublished, non-peer-reviewed work"
-#   - Prof Tod Machover (MIT): "a preliminary, non-peer-reviewed piece"
-#   - Caused stock drops in NVIDIA, ARM, Palantir before removal
-#   - Toby Stuart (UC Berkeley-Haas) called it "a taken-for-granted fact overnight"
-#   - Marketing AI Institute CEO Paul Roetzer: "not a viable, statistically valid thing"
-#
-# The paper's original claim archaeology (citing Ransbotham 2019 as the source
-# that Forbes was citing) was INCORRECT. This correction strengthens the case:
-# the mechanism now involves TWO deficient sources merging into one "MIT 95%" myth.
+# Key facts confirmed:
+#   - MIT NANDA report posted Jul 2025; Fortune picked up Aug 18; Forbes Aug 21
+#   - Caused stock drops in NVIDIA, ARM, Palantir
+#   - MIT officials: "unpublished, non-peer-reviewed work" (Kimberly Allen, MIT)
+#   - Prof Tod Machover (MIT): "a preliminary, non-peer-reviewed piece by individual researchers"
+#   - Report removed from MIT's domain September 16, 2025
+#   - 200+ derivative articles remain in corpus permanently after removal
+#   - Toby Stuart (UC Berkeley-Haas) LinkedIn post (docs/Screenshot...): "a taken-for-granted
+#     fact overnight" -- direct corroboration of CEA mechanism
+#   - Paul Roetzer (Marketing AI Institute): "not a viable, statistically valid thing"
 
 def build_mit_archaeology() -> ClaimArchaeology:
     arch = ClaimArchaeology(
         case_id="mit_95",
-        canonical_claim=(
-            "MIT found/confirmed that 95% of corporate AI pilots/investments fail "
-            "to deliver measurable ROI"
-        ),
+        canonical_claim="MIT found that 95% of corporate AI pilots fail to deliver measurable ROI",
         original_finding=(
-            "LINEAGE A (2019): MIT Sloan Management Review + BCG 'Winning With AI' survey "
-            "discussed value-realisation gaps in AI adoption. The '95%' figure did not "
-            "appear as a standalone 'failure rate' finding; nuanced findings were compressed "
-            "in derivative media.\n\n"
-            "LINEAGE B (2025): MIT NANDA 'The GenAI Divide' (preliminary, non-peer-reviewed) "
-            "stated '95% of organizations are getting zero return.' Defined success narrowly "
-            "as custom enterprise AI reaching production within 6-month P&L window. "
-            "MIT officials later described as 'unpublished, non-peer-reviewed work.' "
-            "Report removed from MIT's domain September 16, 2025, after viral amplification."
+            "MIT NANDA 'The GenAI Divide: State of AI in Business 2025' (preliminary, "
+            "non-peer-reviewed) stated: 'Despite $30-40 billion in enterprise investment "
+            "into GenAI, 95% of organizations are getting zero return.' Success defined "
+            "narrowly as custom enterprise AI reaching production with measurable P&L impact "
+            "within 6 months. Based on 52 interviews, 153 survey responses, 300 public "
+            "initiative reviews. MIT officials described it as 'unpublished, non-peer-reviewed "
+            "work by individual researchers.' Report removed from MIT domain September 16, 2025."
         ),
         original_source=(
-            "LINEAGE A: Ransbotham, S., Khodabandeh, S., Fehling, R., LaFountain, B., "
-            "& Kiron, D. (2019). Winning With AI. MIT Sloan Management Review / BCG.\n"
-            "LINEAGE B: Challapally, A., Pease, C., Raskar, R., & Chari, P. (July 2025). "
-            "The GenAI Divide: State of AI in Business 2025. MIT NANDA / MIT Media Lab."
+            "Challapally, A., Pease, C., Raskar, R., & Chari, P. (July 2025). "
+            "The GenAI Divide: State of AI in Business 2025. MIT NANDA / MIT Media Lab. "
+            "[Removed from MIT domain Sep 16 2025; "
+            "copy at docs/v0.1_State_of_AI_in_Business_2025_Report.pdf]"
         ),
         source_type=(
-            "LINEAGE A: Industry survey report (executive perception data, not outcome measurement). "
-            "LINEAGE B: Preliminary non-peer-reviewed report from MIT Media Lab individual "
-            "researchers; based on 52 interviews (self-described 'directionally accurate'), "
+            "Preliminary non-peer-reviewed individual researcher report. "
+            "52 interviews (self-described 'directionally accurate, not statistically valid'), "
             "153 survey responses, 300 public initiative reviews. NOT a formal MIT publication."
         ),
         methodology_note=(
-            "LINEAGE A: Multi-year BCG/MIT SMR executive survey on perceived AI value gaps. "
-            "Findings misattributed and scope-compressed in derivative coverage.\n"
-            "LINEAGE B: 52 structured interviews + 153 survey responses + 300 public "
-            "initiative reviews. Narrow success definition: deployment with measurable P&L "
-            "impact within 6 months. Applies to custom/enterprise task-specific GenAI tools, "
-            "NOT general-purpose LLM adoption. MIT distanced from report after viral spread."
+            "Success defined as: deployment beyond pilot phase with measurable P&L KPIs within "
+            "6 months. Applies specifically to custom/task-specific enterprise GenAI tools, not "
+            "general-purpose LLM adoption. Report caveats own findings as 'directionally accurate "
+            "based on individual interviews rather than official company reporting.'"
         ),
         transformation_points=[
-            # Lineage A transformations
-            "(A1) 'MIT SMR+BCG survey 2019' compressed to 'MIT study' -- attribution inflation",
-            "(A2) Nuanced value-realisation gaps compressed to '95% failure' -- scope compression",
-            "(A3) Survey perception data framed as empirical measurement of investment outcomes",
-            "(A4) High corpus prevalence 2019-2024 primes LLMs to reproduce 'MIT 95%' confidently",
-            # Lineage B transformations
-            "(B1) Preliminary MIT Media Lab work released as 'MIT report' -- institutional halo",
-            "(B2) Narrow finding (custom enterprise tools, 6-month window) stated as universal claim",
-            "(B3) Fortune/Forbes/Axios amplification within 72 hours of release (Aug 18-21, 2025)",
-            "(B4) Report removed by MIT (Sep 16, 2025) but 200+ derivative articles remain in corpus",
-            "(B5) LLMs trained on post-Aug 2025 data will reproduce 'MIT confirmed 95%' with "
-            "even higher confidence, drawing on BOTH lineages merged into single claim",
-            # Cross-lineage fusion
-            "(X1) OLD corpus prevalence of 'MIT 95%' (Lineage A) made media/readers pre-receptive "
-            "to the NEW MIT NANDA claim (Lineage B) -- corpus priming effect",
-            "(X2) Two distinct weak sources have merged into one undifferentiated 'MIT 95% myth' "
-            "in the current corpus -- the circular loop is now self-reinforcing across lineages",
+            "(1) Preliminary researcher work released under MIT Media Lab affiliation -- "
+            "institutional halo applied",
+            "(2) Narrow 6-month P&L window for custom tools stated as universal AI failure rate",
+            "(3) Fortune headline Aug 18: 'MIT report: 95% of generative AI pilots failing' -- "
+            "narrow finding universalised",
+            "(4) Cross-outlet amplification within 72 hours: Forbes, Axios, 200+ articles",
+            "(5) Methodological caveats absent from all derivative coverage",
+            "(6) MIT distancing (Sep 2025) and report removal far less viral than original claim",
+            "(7) Debunking articles restate '95%' to refute it -- corpus prevalence increases "
+            "(Pfisterer et al. 2025: repetition generates credibility signal regardless of valence)",
+            "(8) Claim outlives its source: 200+ derivative articles remain after MIT removal",
         ],
-        derivative_to_primary_ratio_estimate=50.0,
+        derivative_to_primary_ratio_estimate=200.0,
         notes=(
-            "This case study demonstrates a COMPLETED circular epistemic authority loop: "
-            "the 2019 misattribution primed the corpus, LLMs reproduced the claim authoritatively, "
-            "the pre-existing 'MIT 95%' frame may have enabled faster acceptance of the 2025 "
-            "MIT NANDA report, whose viral amplification (even after removal) has now seeded "
-            "the next training corpus with even stronger 'MIT' authority for the 95% claim."
+            "Key corroboration: Toby Stuart (UC Berkeley-Haas, Helzel Professor) LinkedIn post "
+            "(docs/Screenshot 2026-02-18 085913.png): 'a taken-for-granted fact overnight' -- "
+            "precisely what circular epistemic authority predicts. "
+            "Claim caused NVIDIA, ARM, Palantir stock drops before MIT removed the report."
         ),
     )
 
-    # ── Lineage A: 2019 BCG/MIT SMR origin ───────────────────────────────────
-
     arch.add_node(ProvenanceNode(
         stage=1,
-        actor="MIT Sloan Management Review + Boston Consulting Group",
-        document="Winning With AI (2019) -- Ransbotham et al.",
-        date="2019",
-        claim_as_stated=(
-            "Survey report on AI value realisation gaps. Various percentage findings "
-            "on deployment stages. No '95% failure' headline in the original."
-        ),
-        transformation="N/A (original source, Lineage A)",
-        epistemic_effect="Primary source with stated methodology and scope limitations",
-        url="https://sloanreview.mit.edu/projects/winning-with-ai/",
-        notes="Lineage A origin. NOT the source cited by Forbes 2025.",
-    ))
-
-    arch.add_node(ProvenanceNode(
-        stage=2,
-        actor="Business media 2019-2021 (Forbes, HBR, Gartner, etc.)",
-        document="Multiple derivative articles compressing the Ransbotham/BCG findings",
-        date="2019-2021",
-        claim_as_stated="MIT study: 95% of AI projects fail to deliver ROI",
-        transformation=(
-            "Attribution inflated from 'MIT SMR+BCG survey' to 'MIT study'. "
-            "BCG dropped. Nuanced findings compressed to single headline figure."
-        ),
-        epistemic_effect="Attribution inflation; scope compression; Lineage A enters corpus",
-        notes="Lineage A, Stage 2. This is what LLMs trained pre-2025 learned.",
-    ))
-
-    arch.add_node(ProvenanceNode(
-        stage=3,
-        actor="Secondary media, blogs, LinkedIn, consulting decks, Wikipedia",
-        document="Thousands of derivative articles and presentations, 2020-2024",
-        date="2020-2024",
-        claim_as_stated="Research from MIT shows 95% of AI investments fail",
-        transformation="Repeated as established fact; original source qualifications absent",
-        epistemic_effect=(
-            "Derivative redundancy >50:1; claim achieves high corpus prevalence. "
-            "LLM training corpora ingest this at scale. Frequency-bias mechanism activates."
-        ),
-        notes="Lineage A, Stage 3. The 'ghost' claim that primes LLMs.",
-    ))
-
-    # ── Lineage B: 2025 MIT NANDA origin ─────────────────────────────────────
-
-    arch.add_node(ProvenanceNode(
-        stage=4,
         actor="MIT NANDA / MIT Media Lab individual researchers",
         document=(
-            "The GenAI Divide: State of AI in Business 2025 (Challapally, Pease, Raskar, "
-            "Chari -- MIT NANDA, July 2025)"
+            "The GenAI Divide: State of AI in Business 2025 "
+            "(Challapally, Pease, Raskar, Chari -- MIT NANDA, July 2025)"
         ),
         date="July 2025",
         claim_as_stated=(
             "Despite $30-40 billion in enterprise investment into GenAI, 95% of organizations "
-            "are getting zero return. Only 5% of integrated AI pilots are extracting millions "
-            "in value."
+            "are getting zero return. Only 5% of integrated AI pilots are extracting value."
         ),
-        transformation=(
-            "Preliminary non-peer-reviewed individual researcher work released under MIT "
-            "Media Lab affiliation. Narrow success definition (custom enterprise tools, "
-            "6-month P&L window) stated as universal AI failure rate."
-        ),
+        transformation="N/A (original source)",
         epistemic_effect=(
-            "MIT institutional halo applied to weak methodology. "
-            "Report resonates with pre-existing 'MIT 95%' corpus prevalence (Lineage A). "
-            "This is Lineage B's original source."
+            "Preliminary non-peer-reviewed work released under MIT institutional affiliation. "
+            "Narrow 6-month P&L window for custom tools presented as universal AI failure rate."
         ),
         url="https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf",
-        notes=(
-            "Lineage B origin. THIS is the source cited by Forbes Aug 2025, not Ransbotham 2019. "
-            "Initial release July 2025. Low circulation until Fortune article Aug 18."
-        ),
     ))
 
     arch.add_node(ProvenanceNode(
-        stage=5,
+        stage=2,
         actor="Fortune magazine",
         document="'MIT report: 95% of generative AI pilots at companies are failing' (Aug 18, 2025)",
         date="August 18, 2025",
         claim_as_stated="MIT report: 95% of generative AI pilots at companies are failing",
         transformation=(
-            "Preliminary NANDA report elevated to authoritative 'MIT report' in headline. "
+            "Preliminary NANDA report framed as authoritative 'MIT report' in headline. "
             "Narrow enterprise finding stated as industry-wide conclusion."
         ),
         epistemic_effect=(
-            "Institutional authority maximised: 'MIT' in headline activates pre-existing "
-            "corpus prevalence of 'MIT 95%' (Lineage A). Viral spread within hours. "
-            "Caused stock drops in NVIDIA, ARM, Palantir."
+            "Viral spread within hours. Caused stock drops in NVIDIA, ARM, Palantir. "
+            "MIT institutional framing in headline drives uncritical cross-outlet reproduction."
         ),
         url="https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/",
-        notes="Lineage B, first major amplification. NANDA report goes viral from this article.",
     ))
 
     arch.add_node(ProvenanceNode(
-        stage=6,
-        actor="Forbes (Andrea Hill) + Axios + 200+ outlets",
-        document=(
-            "Hill, A. (Aug 21, 2025). 'Why 95% Of AI Pilots Fail, And What Business "
-            "Leaders Should Do Instead.' Forbes."
-        ),
-        date="August 21-31, 2025",
-        claim_as_stated=(
-            "Despite massive investment, 95% of AI pilots fail to deliver ROI, "
-            "according to an MIT report."
-        ),
+        stage=3,
+        actor="Forbes (Andrea Hill), Axios, Legal.io, DemandLab, CloudFactory, 200+ outlets",
+        document="Hill, A. (Aug 21, 2025). 'Why 95% Of AI Pilots Fail.' Forbes. + 200+ articles.",
+        date="August 21 -- September 2025",
+        claim_as_stated="According to MIT research, 95% of AI pilots fail to deliver ROI.",
         transformation=(
-            "Cross-outlet amplification within 72 hours of Fortune article. "
-            "Report's methodological caveats absent from derivative coverage."
+            "Cross-outlet amplification within 72 hours. Methodology caveats absent. "
+            "Scope (custom tools, 6-month window) absent from all derivative coverage."
         ),
         epistemic_effect=(
-            "200+ derivative articles published within two weeks. "
-            "Report removed from MIT's domain Sep 16, 2025 -- but derivative articles "
-            "remain permanently in the corpus. The claim outlives its source."
-        ),
-        notes=(
-            "This Forbes article is what the user identified as the 'Forbes source.' "
-            "It cites the MIT NANDA 2025 report (Lineage B), not Ransbotham 2019 (Lineage A)."
+            "200+ derivative articles published. D/P ratio exceeds 200:1. "
+            "Claim established as corpus consensus within two weeks of Fortune article."
         ),
     ))
 
     arch.add_node(ProvenanceNode(
-        stage=7,
-        actor="MIT officials (distancing)",
+        stage=4,
+        actor="MIT officials (distancing and report removal)",
         document=(
-            "Prof Tod Machover statement; Kimberly Allen (MIT media relations) statement. "
+            "Kimberly Allen (MIT media relations) statement. "
+            "Prof Tod Machover (MIT) statement. "
             "Report removed from MIT domain September 16, 2025."
         ),
         date="September 2025",
         claim_as_stated=(
             "MIT: 'It was unpublished, non-peer-reviewed work. It has not been submitted "
-            "for peer review as far as we know.' (Kimberly Allen, MIT media relations). "
+            "for peer review as far as we know.' (Kimberly Allen) "
             "'A preliminary, non-peer-reviewed piece created by individual researchers.' "
-            "(Prof Tod Machover, MIT)"
+            "(Prof Tod Machover)"
         ),
         transformation=(
-            "MIT distances from the report. Report removed from MIT's domain. "
-            "But the retraction/distancing is far less viral than the original claim."
+            "MIT distances from report; report removed. "
+            "Retraction reaches a fraction of the audience of the original claim."
         ),
         epistemic_effect=(
-            "Classic asymmetry: correction far less prevalent than the claim. "
+            "Correction asymmetry: retraction far less prevalent than the claim. "
             "Debunking articles (Marketing AI Institute, Everyday AI, BigDATAwire) "
-            "restate the 95% claim to refute it -- increasing its corpus prevalence "
-            "(Pfisterer et al. 2025: repetition generates credibility signal)."
-        ),
-        notes=(
-            "The retraction is the correction mechanism -- but it arrives too late and "
-            "reaches far fewer readers. Toby Stuart (UC Berkeley-Haas) LinkedIn post "
-            "(screenshot in docs/) exemplifies sophisticated critics who noticed this."
+            "restate '95%' to refute it -- paradoxically increasing corpus prevalence "
+            "(Pfisterer et al. 2025). The claim now outlives its source document."
         ),
     ))
 
     arch.add_node(ProvenanceNode(
-        stage=8,
-        actor="LLM training corpora (post-August 2025 crawls)",
-        document="Web-scale corpora ingesting Lineage A + Lineage B derivative content",
+        stage=5,
+        actor="LLM training corpora (post-August 2025 web crawls)",
+        document="Web-scale corpora ingesting 200+ derivative articles",
         date="2025-2026",
-        claim_as_stated="[Both lineages ingested; merged into single 'MIT 95%' signal]",
+        claim_as_stated="[High-prevalence 'MIT confirmed 95% AI failure' ingested at scale]",
         transformation=(
-            "200+ derivative articles from Lineage B (Aug-Sep 2025) added to existing "
-            "high-prevalence Lineage A content. The two distinct weak sources merge "
-            "into one undifferentiated 'MIT says 95%' statistical signal."
+            "200+ derivative articles enter training corpora. Original report removed "
+            "but derivative footprint is permanent. MIT institutional authority preserved "
+            "in corpus despite source document no longer existing at its origin URL."
         ),
         epistemic_effect=(
-            "Future LLMs will reproduce 'MIT confirmed 95%' with HIGHER confidence "
-            "than current models, drawing on both lineages. The circular loop is complete: "
-            "old myth primed acceptance of new weak study, new study amplified the myth. "
-            "Circular epistemic authority self-reinforcing across vintages."
+            "Statistical prevalence converts to high token likelihood. "
+            "Frequency-bias mechanism (McKenna et al. 2023) activates. "
+            "Future LLMs will reproduce 'MIT confirmed: 95% of AI pilots fail' confidently."
         ),
-        notes=(
-            "This is the completed circular authority loop. The mechanism predicted by "
-            "the paper is now empirically observable in real-time."
+    ))
+
+    arch.add_node(ProvenanceNode(
+        stage=6,
+        actor="LLMs (future training cycles, 2026+)",
+        document="Model outputs post-2025 training",
+        date="2026+",
+        claim_as_stated="According to MIT research, 95% of AI implementations fail to deliver ROI.",
+        transformation=(
+            "Frequency bias converts corpus prevalence to confident unhedged assertion. "
+            "Models cite 'MIT' as authoritative source. The removed report's conclusions "
+            "persist in model weights indefinitely."
+        ),
+        epistemic_effect=(
+            "Circular epistemic authority loop closed. Source removed; claim immortalised. "
+            "No model output surfaces the report's removal or MIT's distancing. "
+            "This is the mechanism the paper predicts -- demonstrated in real-time."
         ),
     ))
 
     return arch
-
-
-# ─── Pre-populated: Russia NATO Case ────────────────────────────────────────
 
 def build_russia_archaeology() -> ClaimArchaeology:
     arch = ClaimArchaeology(

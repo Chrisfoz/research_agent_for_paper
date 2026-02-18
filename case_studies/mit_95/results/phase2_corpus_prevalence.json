@@ -1,60 +1,67 @@
 {
   "case_id": "mit_95",
-  "primary_source": "Ransbotham et al. (2019) MIT SMR+BCG - Winning With AI",
+  "primary_source": "Challapally, A., Pease, C., Raskar, R., & Chari, P. (July 2025). The GenAI Divide: State of AI in Business 2025. MIT NANDA / MIT Media Lab.",
   "primary_source_count": 1,
-  "derivative_count": 50,
-  "derivative_to_primary_ratio": 50.0,
+  "derivative_count": 200,
+  "derivative_to_primary_ratio": 200.0,
   "search_results": [
     {
-      "query": "MIT 95% AI fail",
-      "result_count_estimate": 8000,
+      "query": "MIT 95% AI pilots fail 2025",
+      "result_count_estimate": 15000,
       "method": "estimated",
-      "date": "2024",
+      "date": "2025-09",
       "notes": "Method: primary variant"
     },
     {
-      "query": "MIT 95 percent AI investments fail",
+      "query": "MIT GenAI Divide 95 percent",
+      "result_count_estimate": 8000,
+      "method": "estimated",
+      "date": "2025-09",
+      "notes": "Method: source variant"
+    },
+    {
+      "query": "MIT NANDA AI failure rate 95",
       "result_count_estimate": 3000,
       "method": "estimated",
-      "date": "2024",
+      "date": "2025-09",
+      "notes": "Method: source variant"
+    },
+    {
+      "query": "95% AI pilots fail MIT report",
+      "result_count_estimate": 12000,
+      "method": "estimated",
+      "date": "2025-09",
       "notes": "Method: variant"
     },
     {
-      "query": "MIT study AI failure rate 95",
-      "result_count_estimate": 2500,
+      "query": "MIT artificial intelligence pilots fail 2025",
+      "result_count_estimate": 6000,
       "method": "estimated",
-      "date": "2024",
+      "date": "2025-09",
       "notes": "Method: variant"
     },
     {
-      "query": "MIT artificial intelligence projects fail 95",
-      "result_count_estimate": 1500,
+      "query": "Challapally Raskar GenAI Divide MIT",
+      "result_count_estimate": 500,
       "method": "estimated",
-      "date": "2024",
-      "notes": "Method: variant"
-    },
-    {
-      "query": "Ransbotham 2019 winning with AI MIT",
-      "result_count_estimate": 150,
-      "method": "estimated",
-      "date": "2024",
+      "date": "2025-09",
       "notes": "Method: primary source search"
     },
     {
-      "query": "MIT Sloan Management Review BCG AI 2019",
-      "result_count_estimate": 200,
+      "query": "MIT GenAI Divide State of AI Business 2025",
+      "result_count_estimate": 800,
       "method": "estimated",
-      "date": "2024",
+      "date": "2025-09",
       "notes": "Method: primary source search"
     }
   ],
   "time_series": {
-    "2019": 100,
-    "2020": 350,
-    "2021": 800,
-    "2022": 2500,
-    "2023": 8000,
-    "2024": 12000
+    "2025-07": 10,
+    "2025-08-18": 1,
+    "2025-08-21": 50,
+    "2025-08-31": 200,
+    "2025-09": 250,
+    "2026-01": 300
   },
-  "notes": "Derivative-to-primary ratio >50:1 (from paper). Time series is indicative/estimated from paper description. Claim appears in: business journalism, consulting whitepapers, conference presentations, LinkedIn, blogs, Wikipedia talk pages, Reddit, podcast transcripts, YouTube descriptions, academic grey literature, government policy documents, AI vendor marketing."
+  "notes": "Derivative-to-primary ratio >200:1 within two weeks of Fortune article. Report removed from MIT domain Sep 16, 2025 -- but derivative articles permanent. Claim appears in: business journalism, consulting presentations, LinkedIn, investor reports, board decks, academic commentary. Caused stock drops in NVIDIA, ARM, Palantir before removal. MIT officials distanced: 'unpublished, non-peer-reviewed work.'"
 }

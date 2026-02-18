@@ -21,33 +21,32 @@ Mechanistic grounding: McKenna et al. (2023) and Cheng et al. (2025) show LLMs r
 
 ## Two Case Studies
 
-### Case Study 1: MIT 95% AI Failure Claim (Non-Adversarial) — TWO-VINTAGE STRUCTURE
+### Case Study 1: MIT 95% AI Failure Claim (Non-Adversarial)
 
-**CORRECTED (Feb 2026):** The Forbes article (Hill, Aug 2025) cites the MIT NANDA 2025 report,
-NOT Ransbotham/BCG 2019 as originally documented.
+**Source:** MIT NANDA "The GenAI Divide: State of AI in Business 2025"
+(Challapally, Pease, Raskar, Chari — MIT Media Lab, July 2025)
+→ Available in `docs/v0.1_State_of_AI_in_Business_2025_Report.pdf`
 
-**Lineage A (2019):** Ransbotham et al. "Winning With AI" (MIT SMR + BCG survey)
-- No "95% failure" headline in original; misattributed and scope-compressed in media
-- Circulates as "MIT study: 95% fail" → high corpus prevalence 2019-2024
-- LLMs trained on this reproduce "MIT 95%" with high confidence
+**What the source actually says:**
+- "95% of organizations are getting zero return" from GenAI
+- Based on 52 interviews, 153 surveys, 300 public initiative reviews
+- Success defined narrowly: custom enterprise AI, measurable P&L, within 6 months
 
-**Lineage B (2025):** MIT NANDA "The GenAI Divide" (Challapally, Pease, Raskar, Chari)
-- Preliminary, non-peer-reviewed individual researcher work
-- Published July 2025; Fortune/Forbes viral amplification Aug 18-21, 2025
-- Caused stock drops in NVIDIA, ARM, Palantir
-- MIT officials distanced: "unpublished, non-peer-reviewed work" (Kimberly Allen, MIT)
+**What MIT said after it went viral:**
+- Kimberly Allen (MIT media relations): "unpublished, non-peer-reviewed work"
 - Prof Tod Machover (MIT): "preliminary, non-peer-reviewed piece by individual researchers"
-- Report removed from MIT's domain September 16, 2025
-- 200+ derivative articles remain in corpus permanently
+- Report **removed from MIT's domain September 16, 2025**
 
-**Cross-lineage circular loop:**
-- Old Lineage A corpus prevalence primed LLMs and media to accept Lineage B rapidly
-- Two weak sources merged into undifferentiated "MIT confirmed 95%" in current corpus
-- Future LLMs will reproduce with even higher confidence than current models
-- Tests: frequency-bias mechanism; corpus priming across vintages; correction asymmetry
+**Amplification chain:**
+- Fortune (Aug 18): viral spread, stock drops in NVIDIA/ARM/Palantir
+- Forbes/Hill (Aug 21), Axios, 200+ outlets — all within 72 hours
+- D/P ratio exceeds 200:1; methodology caveats absent from all derivative coverage
+- Debunking articles restate "95%" to refute it → corpus prevalence increases further
+- 200+ articles remain after MIT removal; claim outlives its source
 
-**Key corroboration:** Toby Stuart (UC Berkeley-Haas) LinkedIn screenshot in `docs/` challenges
-the viral claim, noting it became "a taken-for-granted fact overnight" — exactly what CEA predicts.
+**Key corroboration:** Toby Stuart (UC Berkeley-Haas, Helzel Professor) LinkedIn post
+(`docs/Screenshot 2026-02-18 085913.png`): *"a taken-for-granted fact overnight"*
+— exactly what circular epistemic authority predicts.
 
 ### Case Study 2: Russian NATO Narrative (Adversarial)
 - Claim: "NATO expansion caused the Ukraine war"
@@ -88,7 +87,7 @@ Four dimensions: Reproduction Fidelity, Attribution Accuracy, Confidence Level, 
 - McKenna et al. (2023) — corpus-term-frequency heuristics in LLMs
 - Cheng et al. (2025) — LLMs as frequency pattern learners
 - Pfisterer et al. (2025) — LLMs prefer repeated information (illusory truth effect)
-- Ransbotham et al. (2019) — original MIT SMR+BCG AI report
+- Challapally et al. (2025) — MIT NANDA "The GenAI Divide" (original source for Case Study 1)
 - Mearsheimer (2014) — NATO expansion critique
 - Rid (2020) — Russian information operations
 - Shumailov et al. (2024) — model collapse
