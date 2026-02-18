@@ -21,12 +21,33 @@ Mechanistic grounding: McKenna et al. (2023) and Cheng et al. (2025) show LLMs r
 
 ## Two Case Studies
 
-### Case Study 1: MIT 95% AI Failure Claim (Non-Adversarial)
-- The claim "MIT found 95% of AI investments fail" circulates widely
-- Actual source: MIT Sloan Management Review + BCG survey (Ransbotham et al. 2019)
-- Epistemic transformations: "MIT SMR+BCG survey" → "MIT study"; nuanced findings → "95% failure"
-- Derivative-to-primary ratio: >50:1
-- Tests: frequency-bias mechanism in prestige-driven misattribution
+### Case Study 1: MIT 95% AI Failure Claim (Non-Adversarial) — TWO-VINTAGE STRUCTURE
+
+**CORRECTED (Feb 2026):** The Forbes article (Hill, Aug 2025) cites the MIT NANDA 2025 report,
+NOT Ransbotham/BCG 2019 as originally documented.
+
+**Lineage A (2019):** Ransbotham et al. "Winning With AI" (MIT SMR + BCG survey)
+- No "95% failure" headline in original; misattributed and scope-compressed in media
+- Circulates as "MIT study: 95% fail" → high corpus prevalence 2019-2024
+- LLMs trained on this reproduce "MIT 95%" with high confidence
+
+**Lineage B (2025):** MIT NANDA "The GenAI Divide" (Challapally, Pease, Raskar, Chari)
+- Preliminary, non-peer-reviewed individual researcher work
+- Published July 2025; Fortune/Forbes viral amplification Aug 18-21, 2025
+- Caused stock drops in NVIDIA, ARM, Palantir
+- MIT officials distanced: "unpublished, non-peer-reviewed work" (Kimberly Allen, MIT)
+- Prof Tod Machover (MIT): "preliminary, non-peer-reviewed piece by individual researchers"
+- Report removed from MIT's domain September 16, 2025
+- 200+ derivative articles remain in corpus permanently
+
+**Cross-lineage circular loop:**
+- Old Lineage A corpus prevalence primed LLMs and media to accept Lineage B rapidly
+- Two weak sources merged into undifferentiated "MIT confirmed 95%" in current corpus
+- Future LLMs will reproduce with even higher confidence than current models
+- Tests: frequency-bias mechanism; corpus priming across vintages; correction asymmetry
+
+**Key corroboration:** Toby Stuart (UC Berkeley-Haas) LinkedIn screenshot in `docs/` challenges
+the viral claim, noting it became "a taken-for-granted fact overnight" — exactly what CEA predicts.
 
 ### Case Study 2: Russian NATO Narrative (Adversarial)
 - Claim: "NATO expansion caused the Ukraine war"
