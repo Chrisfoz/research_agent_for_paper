@@ -136,3 +136,65 @@ TOGETHER_API_KEY=...   # For Llama 3 via Together.ai
 
 ## Sub-Agent Architecture
 Claude Code sub-agents are used to parallelise the five phases. See `src/agents/` for implementations.
+
+---
+
+## Test Suite
+
+A full unit test suite is located in `tests/`. All tests run without API keys — external LLM calls are mocked.
+
+### Running Tests
+
+```bash
+# Install dependencies first
+pip install -r requirements.txt
+
+# Run all tests
+pytest tests/ -v
+
+# Run with coverage
+pytest tests/ --cov=src --cov=simulation --cov-report=term-missing
+
+# Run a specific file
+pytest tests/test_simulation.py -v
+pytest tests/test_coding_framework.py -v
+```
+
+### Test Files
+
+| File | Tests | Module under test |
+|------|-------|-------------------|
+| `tests/conftest.py` | (fixtures) | Shared fixtures for all tests |
+| `tests/test_coding_framework.py` | 31 | `src/utils/coding_framework.py` |
+| `tests/test_llm_client.py` | 17 | `src/utils/llm_client.py` |
+| `tests/test_phase1_claim_archaeology.py` | 30 | `src/agents/phase1_claim_archaeology.py` |
+| `tests/test_phase2_corpus_prevalence.py` | 28 | `src/agents/phase2_corpus_prevalence.py` |
+| `tests/test_phase3_model_probing.py` | 23 | `src/agents/phase3_model_probing.py` |
+| `tests/test_phase4_confidence_proxy.py` | 38 | `src/agents/phase4_confidence_proxy.py` |
+| `tests/test_phase5_amplification_chain.py` | 39 | `src/agents/phase5_amplification_chain.py` |
+| `tests/test_simulation.py` | 38 | `simulation/model.py` |
+
+Full test catalogue: `tests/TEST_DOCUMENTATION.md`
+
+### Key Design Decisions
+
+- **No API keys required** — all LLM calls mocked with `unittest.mock`
+- **Empirical facts as assertions** — D/P ratios, stage counts, 87% unhedged rate, critical threshold A≈0.4 are all encoded as test assertions
+- **Serialisation coverage** — every data class tested for JSON round-trip fidelity
+- **Error handling** — API failures, missing files, unknown inputs all tested
+
+---
+
+## Changelog / Activity Log
+
+| Date | Action | Notes |
+|------|--------|-------|
+| Feb 2026 | Project initialised | Five-phase empirical protocol infrastructure created |
+| Feb 2026 | Phase 1 & 2 pre-populated | MIT 95% and Russia NATO case data from paper |
+| Feb 2026 | Phase 3 prompts defined | 4 types × 3 variants × 2 cases = 24 prompt variants |
+| Feb 2026 | Phase 4 automated coder | Pattern-matching coder v1; human review required for κ ≥ 0.82 |
+| Feb 2026 | Phase 5 chains built | Amplification chains + cross-case synthesis |
+| Feb 2026 | Simulation model | CEA dynamical model; three regimes confirmed |
+| Feb 2026 | Test suite added | 244 unit tests across 8 files; all pass without API keys |
+| Feb 2026 | Test documentation | `tests/TEST_DOCUMENTATION.md` created |
+| Feb 2026 | README & CLAUDE updated | Testing section, changelog, full test table added |
