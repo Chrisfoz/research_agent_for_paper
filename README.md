@@ -84,7 +84,52 @@ Results are saved to:
 ├── notebooks/              # Analysis notebooks
 ├── simulation/             # Dynamical model (CEA amplification)
 └── tests/
+    ├── conftest.py                 # Shared fixtures
+    ├── TEST_DOCUMENTATION.md       # Full test catalogue
+    ├── test_coding_framework.py    # Coding framework unit tests
+    ├── test_llm_client.py          # LLM client unit tests (mocked)
+    ├── test_phase1_claim_archaeology.py
+    ├── test_phase2_corpus_prevalence.py
+    ├── test_phase3_model_probing.py
+    ├── test_phase4_confidence_proxy.py
+    ├── test_phase5_amplification_chain.py
+    └── test_simulation.py
 ```
+
+## Testing
+
+The test suite covers all modules without requiring API keys — all external LLM calls are mocked.
+
+```bash
+# Run all tests
+pytest tests/ -v
+
+# Run with coverage
+pytest tests/ --cov=src --cov=simulation --cov-report=term-missing
+
+# Run a specific module
+pytest tests/test_simulation.py -v
+```
+
+**244 tests** across 8 test files. See [`tests/TEST_DOCUMENTATION.md`](tests/TEST_DOCUMENTATION.md) for the full test catalogue.
+
+| Test File | Tests | What it covers |
+|-----------|-------|----------------|
+| `test_coding_framework.py` | 31 | Enums, `CodedResponse`, `CaseResults`, `summary_table` |
+| `test_llm_client.py` | 17 | `query_model` (cache, retry, errors), all 5 API wrappers |
+| `test_phase1_claim_archaeology.py` | 30 | Provenance chain structure, MIT/Russia empirical facts |
+| `test_phase2_corpus_prevalence.py` | 28 | D/P ratios, time series, live search (mocked) |
+| `test_phase3_model_probing.py` | 23 | Prompt structure (4 types × 3 variants), probing runner |
+| `test_phase4_confidence_proxy.py` | 38 | Pattern matching, confidence/awareness extraction, coding |
+| `test_phase5_amplification_chain.py` | 39 | Chain stages, cross-case synthesis |
+| `test_simulation.py` | 38 | Sigmoid, regimes, critical threshold, parameter sweep |
+
+## Changelog
+
+| Date | Version | Change |
+|------|---------|--------|
+| Feb 2026 | v0.1 | Initial research agent infrastructure |
+| Feb 2026 | v0.2 | Full test suite added (244 tests); test documentation created |
 
 ## Paper Reference
 
