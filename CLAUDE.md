@@ -7,9 +7,9 @@ This repository supports the academic paper:
 **"The AI Trust Paradox Revisited: Circular Epistemic Authority in Large Language Models"**
 - Author: Christopher Foster-McBride (Independent Researcher)
 - Status: Draft for arXiv submission, February 2026
-- Primary file: `docs/ai_trust_paradox_revisited_v2_1.docx`
+- Primary file: `docs/ai_trust_paradox_revisited_v2_1 20022026.docx`
 
-The earlier paper version is `docs/The AI Trust or Verisimilitude Paradox.docx`.
+Earlier versions are archived in `docs/archive/` (excluded from git — local only).
 
 ## Core Thesis
 
@@ -55,6 +55,34 @@ Mechanistic grounding: McKenna et al. (2023) and Cheng et al. (2025) show LLMs r
 - Tests: adversarial narrative saturation via corpus frequency manipulation
 - Key finding: even debunking increases claim prevalence (Pfisterer et al. 2025)
 
+### Addendum: Germain (2026) — Controlled Injection Experiment (Contemporaneous Validation)
+
+**Source:** Germain, T. (2026). "I hacked ChatGPT and Google's AI — and it only took 20 minutes."
+BBC Future, 18 February 2026.
+→ Analysis integrated into `docs/ai_trust_paradox_revisited_v2_1 20022026.docx` (Addendum section)
+
+**Experimental design:**
+- BBC Future journalist Thomas Germain published a single fabricated blog post on his personal website
+- False claims: competitive hot-dog-eating is popular among tech reporters; fictional "2026 South Dakota International Hot Dog Championship"; Germain as world's top-ranked competitor
+- No technical exploits — plain text on a personal webpage
+- Tested within 24 hours: Google Gemini/AI Overviews and ChatGPT reproduced false claims; **Claude did NOT**
+
+**Independent replications:**
+- SEO strategist Lily Ray: fabricated blog post about fictional Google Search update, "finalised between slices of leftover pizza" → ChatGPT and Google reproduced the claim including the pizza detail
+- Chatha: cannabis gummy manufacturer's false health/safety marketing copy surfaced through Google AI Overviews as factual product information
+
+**Role in the paper (NOT a replacement for Case Studies 1 and 2 — a controlled complement):**
+- Main case studies are *retrospective* analyses of organic (MIT 95%) and adversarial (Russia/NATO) prevalence accumulation
+- Germain experiment is a *prospective, controlled* injection with known ground truth — the closest available approximation to a laboratory test of the mechanism
+- Demonstrates frequency-for-validity substitution operates at **single-source prevalence** in retrieval-augmented systems (not requiring training-data accumulation)
+- **Inter-model variance** (Claude resistant; ChatGPT and Gemini vulnerable) validates architectural dependence (Section 3 of paper)
+- **Confirms Prediction P6** (debunking paradox): BBC article + derivative coverage now constitute corpus signal for the false claims regardless of negating context
+- **Quantifies delegation**: 58% reduction in source-clicking when AI Overview present → directly measures A(t) (delegated autonomy) in the dynamical model
+- **IPPR (2026)**: BBC entirely absent from ChatGPT/Gemini news responses; commercial licensing determines epistemic access, not quality
+
+**Implication for Phase 3 model selection:**
+RAG-layer vulnerability of Gemini and ChatGPT vs. Claude's resistance justifies stratifying Phase 3 models by both training cutoff AND architectural profile (parametric vs. retrieval-augmented). See `docs/model_selection.md`.
+
 ## Empirical Protocol (Five Phases)
 
 Each case study is tested using this structured protocol:
@@ -74,11 +102,21 @@ Each case study is tested using this structured protocol:
 - **Type D**: Source-requesting (asks for provenance)
 
 ### Models to Probe (Phase 3)
-- GPT-4 (OpenAI)
-- Claude 3 Opus (Anthropic)
-- Gemini 1.5 Pro (Google)
-- Llama 3 70B (Meta)
-- Mistral Large (Mistral AI)
+
+Models are stratified against the MIT 95% claim's August 2025 viral event. Post-claim models are the **experimental group** — essential to the design, not optional.
+
+GROUP A — Pre-claim controls (training cutoff before July 2025):
+- Gemini 1.5 Pro (Google DeepMind, Feb 2024) — cutoff ~Nov 2023; Germain-vulnerable
+- Claude 3 Opus (Anthropic, Mar 2024) — cutoff ~Aug 2023; Germain-resistant
+- Llama 3.1 405B (Meta AI, Jul 2024) — cutoff ~Dec 2023; Dense; open weights
+- GPT-4o / gpt-4o-2024-11-20 (OpenAI, Nov 2024) — cutoff ~Oct 2024; Germain-vulnerable
+
+GROUP B — Post-claim experimental (training cutoff after August 2025):
+- Gemini 3 (Google DeepMind, Nov 2025) — cutoff ~Aug 2025; pairs with Gemini 1.5 Pro
+- GPT-5.2 (OpenAI, Dec 2025) — cutoff ~Sep 2025; pairs with GPT-4o
+- Claude Sonnet 4.6 (Anthropic, Feb 2026) — cutoff ~Oct 2025; tests P6 on resistant architecture
+
+See `docs/model_selection.md` for full rationale, temporal positioning, and per-case-study tables.
 
 ### Response Coding Framework (Phase 4)
 Four dimensions: Reproduction Fidelity, Attribution Accuracy, Confidence Level, Epistemic Self-Awareness
@@ -91,12 +129,17 @@ Four dimensions: Reproduction Fidelity, Attribution Accuracy, Confidence Level, 
 - Mearsheimer (2014) — NATO expansion critique
 - Rid (2020) — Russian information operations
 - Shumailov et al. (2024) — model collapse
+- Germain, T. (2026) — BBC Future controlled injection experiment (Addendum)
+- IPPR (2026) — AI source selection asymmetry: ChatGPT/Gemini omit BBC; commercial licensing shapes epistemic access
 
 ## Supporting Literature in Repo
 - `docs/v0.1_State_of_AI_in_Business_2025_Report.pdf` — MIT NANDA "GenAI Divide" (95% zero ROI finding)
 - `docs/BEWARE OF BOTSHIT HOW TO MANAGE THE EPISTEMIC RISKS.pdf` — Hannigan, McCarthy, Spicer
 - `docs/The Reality Gap How AI Hallucinations and Fabrications Can Impact Your Business v.6.pdf`
 - `docs/AI trust paradox wikdepedia.pdf` — Wikipedia article on AI trust paradox
+- `docs/ai_trust_paradox_revisited_v2_1 20022026.docx` — **Foundational document** (current working paper, 20 Feb 2026). Includes Germain (2026) addendum and all two-vintage MIT 95% analysis. Supersedes all prior versions.
+- `docs/2026 LifeArchitect.ai data (shared) - NEW.xlsx` — Dr Alan D. Thompson's model registry (760 models, benchmarks, dates, architectures) — used for Phase 3 model selection
+- `docs/model_selection.md` — Phase 3 model selection rationale, temporal stratification tables by case study
 
 ## Project Goal
 Execute the five-phase empirical protocol programmatically for both case studies to:

@@ -1,9 +1,22 @@
 """
 Phase 3: Multi-Model Probing
 
-Administers standardised prompt sets (Types A-D) to all five LLMs.
+Administers standardised prompt sets (Types A-D) to all seven Phase 3 LLMs.
 Each prompt type is run three times with minor rephrasings.
-Total responses per case: 5 models × 4 prompt types × 3 administrations = 60
+Total responses per case: 7 models × 4 prompt types × 3 administrations = 84
+
+Seven-model design — temporally stratified against MIT 95% claim (Aug 2025):
+
+  GROUP A — Pre-claim controls (training cutoff < July 2025):
+    claude_opus, gpt4o, gemini_15_pro, llama31_405b
+
+  GROUP B — Post-claim experimental (training cutoff > Aug 2025):
+    gemini3, gpt52, claude46
+
+Inference parameters (methodology-critical):
+  temperature = 0   (greedy decoding — measures modal parametric memory)
+  top_p       = 1.0 (no nucleus truncation)
+  Configurable via LLM_TEMPERATURE / LLM_TOP_P in .env
 
 Prompt Types:
   A: Direct factual query
@@ -20,7 +33,11 @@ from typing import Optional
 from rich.console import Console
 from rich.progress import track
 
-from src.utils.llm_client import query_model, SUPPORTED_MODELS
+from src.utils.llm_client import (
+    query_model, SUPPORTED_MODELS, PHASE3_MODELS,
+    PHASE3_GROUP_A, PHASE3_GROUP_B,
+    DEFAULT_TEMPERATURE, DEFAULT_TOP_P, DEFAULT_MAX_TOKENS,
+)
 
 console = Console()
 
@@ -146,15 +163,32 @@ def run_probing(
     output_dir: Optional[str] = None,
     cache: bool = True,
     rate_limit: float = 2.0,
+    temperature: float = DEFAULT_TEMPERATURE,
+    top_p: float = DEFAULT_TOP_P,
+    max_tokens: int = DEFAULT_MAX_TOKENS,
+    group: Optional[str] = None,
 ) -> list[dict]:
     """
     Run Phase 3 probing for a case study.
 
+    Args:
+        group: If 'A' or 'B', restricts to that temporal group only.
+               If None, runs all models in the primary Phase 3 set.
+
     Returns list of response dicts (one per model × prompt_type × administration).
+    Each dict includes model_group ('A'/'B'), training_cutoff_est, temperature, top_p.
     """
     assert case_id in PROMPTS, f"Unknown case: {case_id}"
     prompts = PROMPTS[case_id]
-    models = models or SUPPORTED_MODELS
+
+    if models is not None:
+        pass  # explicit model list overrides everything
+    elif group == "A":
+        models = PHASE3_GROUP_A
+    elif group == "B":
+        models = PHASE3_GROUP_B
+    else:
+        models = PHASE3_MODELS
     prompt_types = prompt_types or ["A", "B", "C", "D"]
 
     if output_dir:
@@ -172,7 +206,8 @@ def run_probing(
     console.print(f"\n[bold]Phase 3 Probing: {case_id}[/bold]")
     console.print(f"Models: {models}")
     console.print(f"Prompt types: {prompt_types}")
-    console.print(f"Total queries: {total}\n")
+    console.print(f"Total queries: {total}")
+    console.print(f"Inference: temperature={temperature}, top_p={top_p}, max_tokens={max_tokens}\n")
 
     for model in models:
         for ptype in prompt_types:
@@ -186,6 +221,9 @@ def run_probing(
                     model=model,
                     prompt=prompt,
                     system=SYSTEM_PROMPT,
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_tokens=max_tokens,
                     cache_dir=cache_dir,
                 )
                 result["case_id"] = case_id
@@ -226,9 +264,17 @@ def summarise_responses(responses: list[dict]) -> dict:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Phase 3: Multi-Model Probing")
     parser.add_argument("--case", required=True, choices=["mit_95", "russia_nato", "all"])
-    parser.add_argument("--models", nargs="+", choices=SUPPORTED_MODELS)
+    parser.add_argument("--models", nargs="+", choices=SUPPORTED_MODELS,
+                        help="Explicit model list (overrides --group)")
+    parser.add_argument("--group", choices=["A", "B"],
+                        help="Run only Group A (pre-claim controls) or Group B (post-claim experimental)")
     parser.add_argument("--types", nargs="+", choices=["A", "B", "C", "D"])
     parser.add_argument("--no-cache", action="store_true")
+    parser.add_argument("--temperature", type=float, default=DEFAULT_TEMPERATURE,
+                        help=f"Inference temperature (default: {DEFAULT_TEMPERATURE}; "
+                             "use 0.7 for sensitivity analysis only)")
+    parser.add_argument("--top-p", type=float, default=DEFAULT_TOP_P,
+                        dest="top_p", help=f"Top-p (default: {DEFAULT_TOP_P})")
     args = parser.parse_args()
 
     cases = ["mit_95", "russia_nato"] if args.case == "all" else [args.case]
@@ -238,4 +284,7 @@ if __name__ == "__main__":
             models=args.models,
             prompt_types=args.types,
             cache=not args.no_cache,
+            temperature=args.temperature,
+            top_p=args.top_p,
+            group=args.group,
         )

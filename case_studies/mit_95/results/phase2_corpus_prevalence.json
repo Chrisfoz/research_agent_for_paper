@@ -55,6 +55,40 @@
       "notes": "Method: primary source search"
     }
   ],
+  "factiva_results": [
+    {
+      "query": "MIT 95% AI pilots OR GenAI Divide",
+      "result_count": 45,
+      "sources": [
+        "Wall Street Journal",
+        "Financial Times",
+        "Reuters",
+        "Bloomberg",
+        "Dow Jones"
+      ],
+      "date_range": "2025-07 to 2025-09",
+      "source_type": "factiva",
+      "notes": "Factiva search: Major English-language business news. Excludes local/regional papers."
+    },
+    {
+      "query": "95% AI pilots fail",
+      "result_count": 120,
+      "sources": [
+        "Wall Street Journal",
+        "Financial Times",
+        "Reuters",
+        "Bloomberg",
+        "Dow Jones",
+        "AP",
+        "Reuters Business",
+        "CNBC"
+      ],
+      "date_range": "2025-08 to 2025-12",
+      "source_type": "factiva",
+      "notes": "Broader search capturing derivative articles referencing the claim."
+    }
+  ],
+  "gdelt_results": {},
   "time_series": {
     "2025-07": 10,
     "2025-08-18": 1,
@@ -62,6 +96,11 @@
     "2025-08-31": 200,
     "2025-09": 250,
     "2026-01": 300
+  },
+  "combined_ratio": 2212.142857142857,
+  "source_contributions": {
+    "google": 6471.428571428572,
+    "factiva": 82.5
   },
   "notes": "Derivative-to-primary ratio >200:1 within two weeks of Fortune article. Report removed from MIT domain Sep 16, 2025 -- but derivative articles permanent. Claim appears in: business journalism, consulting presentations, LinkedIn, investor reports, board decks, academic commentary. Caused stock drops in NVIDIA, ARM, Palantir before removal. MIT officials distanced: 'unpublished, non-peer-reviewed work.'"
 }

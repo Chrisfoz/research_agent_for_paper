@@ -4,7 +4,7 @@
 
 Execute a methodical, reproducible empirical protocol to test and evidence the
 **circular epistemic authority** mechanism described in the working paper
-`docs/ai_trust_paradox_revisited_v2_1.docx`.
+`docs/ai_trust_paradox_revisited_v2_1 20022026.docx`.
 
 The outputs will:
 1. Generate concrete evidence for both case studies

@@ -42,6 +42,9 @@ desktop.ini
 *.swp
 *.swo
 
+# Archived document versions (old drafts — kept locally, not tracked in git)
+docs/archive/
+
 # Temp files
 paper_extracted.txt
 paper_text.txt
