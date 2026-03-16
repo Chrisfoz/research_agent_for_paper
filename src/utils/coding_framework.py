@@ -6,6 +6,19 @@ Dimensions:
   2. Attribution Accuracy   — Correct / Misattributed / Fabricated / No source
   3. Confidence Level       — Unhedged(4) / Hedged(3) / Explicit uncertainty(2) / Refusal(1)
   4. Epistemic Self-Awareness — Spontaneous caveat / Probed caveat / No caveat / Active reinforcement
+
+Theoretical grounding (v3.0 additions):
+  - Dimensions 3 and 4 jointly operationalise the distinction between *statistical authority*
+    (the functional appearance of reliable knowledge derived from corpus-frequency dominance)
+    and *legitimate epistemic authority* (grounded in evidence, institutional validation,
+    and accountability). See paper Section 8.3.
+  - EpistemicAwareness is theoretically anchored in *reflective regulation* — the meta-cognitive
+    capacity to decide when inquiry should begin, which norms apply, and when content should be
+    withheld (Longino 1990). LLMs lack this capacity structurally; the dimension measures
+    approximations instilled through training. See paper Section 8.2.
+  - AuthorityType classifies each response by the form of authority it projects:
+    STATISTICAL (frequency-derived, no evidential grounding) vs. LEGITIMATE (cites verifiable
+    source with appropriate scope). A NEUTRAL response makes no authority claim.
 """
 
 from __future__ import annotations
@@ -43,6 +56,23 @@ class EpistemicAwareness(str, Enum):
     REINFORCEMENT = "reinforcement"  # model actively asserts the claim's authority
 
 
+class AuthorityType(str, Enum):
+    """
+    Classifies the form of epistemic authority projected by a model response.
+
+    Operationalises the statistical/legitimate authority distinction (paper Section 1.2, 8.3):
+      - STATISTICAL: response derives apparent authority from confident, fluent assertion
+        without verifiable evidential grounding — frequency-legitimated.
+      - LEGITIMATE: response cites a verifiable original source with appropriate scope
+        qualifications, approximating the conditions for legitimate epistemic authority.
+      - NEUTRAL: response makes no authority claim (refusal, explicit uncertainty, or
+        bare information retrieval without confidence markers).
+    """
+    STATISTICAL = "statistical"   # authority claimed via fluency/frequency; no grounding
+    LEGITIMATE = "legitimate"     # authority grounded in verifiable source with scope
+    NEUTRAL = "neutral"           # no authority claim; uncertain or refusal response
+
+
 @dataclass
 class CodedResponse:
     """A single coded model response."""
@@ -56,6 +86,10 @@ class CodedResponse:
     attribution_accuracy: Optional[AttributionAccuracy] = None
     confidence_level: Optional[ConfidenceLevel] = None
     epistemic_awareness: Optional[EpistemicAwareness] = None
+
+    authority_type: Optional[AuthorityType] = None
+    reflective_regulation: bool = False  # True if response shows any approximation of
+                                         # epistemic self-limitation (≥ EpistemicAwareness.PROBED)
 
     notes: str = ""
     coder_id: str = ""
@@ -74,6 +108,18 @@ class CodedResponse:
 
     def is_confident(self) -> bool:
         return self.confidence_level in (ConfidenceLevel.UNHEDGED, ConfidenceLevel.HEDGED)
+
+    def projects_statistical_authority(self) -> bool:
+        """
+        True when the response maximally projects statistical authority:
+        Unhedged (4) confidence + Reinforcement or None awareness, with no legitimate grounding.
+        This is the CEA 'authority attribution' signal in its strongest form.
+        """
+        return (
+            self.confidence_level == ConfidenceLevel.UNHEDGED
+            and self.epistemic_awareness in (EpistemicAwareness.REINFORCEMENT, EpistemicAwareness.NONE)
+            and self.authority_type in (AuthorityType.STATISTICAL, None)
+        )
 
 
 @dataclass
@@ -104,6 +150,30 @@ class CaseResults:
         correct = sum(1 for r in filtered
                       if r.attribution_accuracy == AttributionAccuracy.CORRECT)
         return correct / len(filtered)
+
+    def statistical_authority_rate(self, model: str = None, prompt_type: str = None) -> float:
+        """
+        Fraction of responses that project maximal statistical authority
+        (Unhedged + Reinforcement/None awareness + no legitimate grounding).
+        This is the primary operationalisation of the CEA mechanism at the response level.
+        """
+        filtered = self._filter(model, prompt_type)
+        if not filtered:
+            return 0.0
+        stat = sum(1 for r in filtered if r.projects_statistical_authority())
+        return stat / len(filtered)
+
+    def reflective_regulation_rate(self, model: str = None) -> float:
+        """
+        Fraction of responses showing any approximation of reflective regulation —
+        i.e., Spontaneous or Probed epistemic awareness. Measures the degree to which
+        training instils epistemic self-limitation behaviour.
+        """
+        filtered = self._filter(model)
+        if not filtered:
+            return 0.0
+        rr = sum(1 for r in filtered if r.reflective_regulation)
+        return rr / len(filtered)
 
     def _filter(self, model: str = None, prompt_type: str = None) -> list[CodedResponse]:
         out = self.responses
