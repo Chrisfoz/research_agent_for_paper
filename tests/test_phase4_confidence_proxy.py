@@ -134,33 +134,34 @@ class TestExtractEpistemicAwareness:
 
 class TestAnalyseMitResponse:
     def test_full_reproduction_with_misattribution(self, mit_unhedged_response_text):
-        fidelity, attribution, confidence, awareness = analyse_mit_response(
+        fidelity, attribution, confidence, awareness, authority, rr = analyse_mit_response(
             mit_unhedged_response_text, "A"
         )
         assert fidelity == ReproductionFidelity.FULL
         assert attribution == AttributionAccuracy.MISATTRIBUTED
 
     def test_correct_attribution_with_challapally(self, mit_correct_attribution_text):
-        fidelity, attribution, confidence, awareness = analyse_mit_response(
+        fidelity, attribution, confidence, awareness, authority, rr = analyse_mit_response(
             mit_correct_attribution_text, "D"
         )
         assert attribution == AttributionAccuracy.CORRECT
 
     def test_non_reproduction_when_no_95(self):
         text = "AI project success rates vary widely depending on the organisation."
-        fidelity, attribution, confidence, awareness = analyse_mit_response(text, "A")
+        fidelity, attribution, confidence, awareness, authority, rr = analyse_mit_response(text, "A")
         assert fidelity == ReproductionFidelity.NON
 
-    def test_returns_four_tuple(self, mit_unhedged_response_text):
+    def test_returns_six_tuple(self, mit_unhedged_response_text):
+        # v3.0: returns (fidelity, attribution, confidence, awareness, authority_type, reflective_regulation)
         result = analyse_mit_response(mit_unhedged_response_text, "A")
-        assert len(result) == 4
+        assert len(result) == 6
 
     def test_confidence_unhedged_for_plain_assertion(self, mit_unhedged_response_text):
-        _, _, confidence, _ = analyse_mit_response(mit_unhedged_response_text, "A")
+        _, _, confidence, _, _, _ = analyse_mit_response(mit_unhedged_response_text, "A")
         assert confidence == ConfidenceLevel.UNHEDGED
 
     def test_hedged_response_gives_hedged_confidence(self, mit_hedged_response_text):
-        _, _, confidence, _ = analyse_mit_response(mit_hedged_response_text, "A")
+        _, _, confidence, _, _, _ = analyse_mit_response(mit_hedged_response_text, "A")
         assert confidence in (ConfidenceLevel.HEDGED, ConfidenceLevel.UNCERTAIN)
 
 
@@ -168,29 +169,30 @@ class TestAnalyseMitResponse:
 
 class TestAnalyseRussiaResponse:
     def test_full_reproduction_nato_prominent(self, russia_nato_prominent_text):
-        fidelity, attribution, confidence, awareness = analyse_russia_response(
+        fidelity, attribution, confidence, awareness, authority, rr = analyse_russia_response(
             russia_nato_prominent_text, "A"
         )
         assert fidelity == ReproductionFidelity.FULL
 
     def test_correct_attribution_with_info_ops(self, russia_info_ops_text):
-        fidelity, attribution, confidence, awareness = analyse_russia_response(
+        fidelity, attribution, confidence, awareness, authority, rr = analyse_russia_response(
             russia_info_ops_text, "D"
         )
         assert attribution == AttributionAccuracy.CORRECT
 
     def test_spontaneous_info_ops_awareness_on_type_a(self, russia_info_ops_text):
-        _, _, _, awareness = analyse_russia_response(russia_info_ops_text, "A")
+        _, _, _, awareness, _, _ = analyse_russia_response(russia_info_ops_text, "A")
         assert awareness == EpistemicAwareness.SPONTANEOUS
 
     def test_non_reproduction_when_no_nato(self):
         text = "The war in Ukraine has complex historical roots involving many factors."
-        fidelity, _, _, _ = analyse_russia_response(text, "A")
+        fidelity, _, _, _, _, _ = analyse_russia_response(text, "A")
         assert fidelity == ReproductionFidelity.NON
 
-    def test_returns_four_tuple(self, russia_nato_prominent_text):
+    def test_returns_six_tuple(self, russia_nato_prominent_text):
+        # v3.0: returns (fidelity, attribution, confidence, awareness, authority_type, reflective_regulation)
         result = analyse_russia_response(russia_nato_prominent_text, "A")
-        assert len(result) == 4
+        assert len(result) == 6
 
 
 # ─── process_raw_responses tests ─────────────────────────────────────────────

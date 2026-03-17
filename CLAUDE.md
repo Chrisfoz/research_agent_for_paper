@@ -6,10 +6,11 @@ This repository supports the academic paper:
 
 **"The AI Trust Paradox Revisited: Circular Epistemic Authority in Large Language Models"**
 - Author: Christopher Foster-McBride (Independent Researcher)
-- Status: Draft for arXiv submission, February 2026
-- Primary file: `docs/ai_trust_paradox_revisited_v2_1 20022026.docx`
+- Status: Draft for arXiv submission, March 2026
+- Primary file: `docs/ai_trust_paradox_revisited_v3_0_15032026.md`
+- Previous version archived: `docs/archive/ai_trust_paradox_revisited_v2_1_20022026.docx`
 
-Earlier versions are archived in `docs/archive/` (excluded from git — local only).
+Earlier versions are archived in `docs/archive/`.
 
 ## Core Thesis
 
@@ -241,3 +242,7 @@ Full test catalogue: `tests/TEST_DOCUMENTATION.md`
 | Feb 2026 | Test suite added | 244 unit tests across 8 files; all pass without API keys |
 | Feb 2026 | Test documentation | `tests/TEST_DOCUMENTATION.md` created |
 | Feb 2026 | README & CLAUDE updated | Testing section, changelog, full test table added |
+| Mar 2026 | **Paper v3.0** | v2.1 archived; v3.0 created at `docs/ai_trust_paradox_revisited_v3_0_15032026.md`. New sections: statistical vs legitimate epistemic authority (§1.2), fluency gradient (§1.3), verification asymmetry (§3), reflective regulation framing (§8.2), statistical authority signal (§8.3), epistemic drift (§9.4), multi-level governance + knowledge sanctuaries (§10). Appendix A documents all changes. |
+| Mar 2026 | **Code: coding_framework.py** | Added `AuthorityType` enum (STATISTICAL/LEGITIMATE/NEUTRAL); `authority_type` and `reflective_regulation` fields on `CodedResponse`; `projects_statistical_authority()`, `statistical_authority_rate()`, `reflective_regulation_rate()` methods. |
+| Mar 2026 | **Code: phase4_confidence_proxy.py** | Added `REFLECTIVE_REGULATION_PATTERNS`, `VERIFICATION_ASYMMETRY_PATTERNS`, `LEGITIMATE_AUTHORITY_PATTERNS`; `extract_reflective_regulation()`, `extract_verification_asymmetry_acknowledgement()`, `extract_authority_type()` functions; analysis functions updated to return 6-tuple; `compute_summary_stats` includes `statistical_authority_rate_A` and `reflective_regulation_rate`. |
+| Mar 2026 | **Code: simulation/model.py** | Added `verification_asymmetry_factor` to `SimParams`; `epistemic_drift_rate()` and `mean_epistemic_drift()` to `SimResult`; epistemic drift included in trajectory data output and console reporting. Module docstring updated with full theoretical grounding. |

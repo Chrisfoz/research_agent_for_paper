@@ -16,11 +16,24 @@ Where:
   theta      : confidence threshold for unhedged assertion
   gamma_i    : correction efficacy coefficients
   K^i_c(t)   : correction mechanisms {fact-check, credibility, re-ranking, human}
+  D(t)       : epistemic drift rate — rate of change in population-level epistemic quality
+               D(t) > 0 means drifting toward lower standards (paper Section 9.4)
 
 Three regimes:
   1. Correction-dominant: sum(gamma_i) > alpha * A * max(dT/dP) — false claims decay
   2. Oscillatory (balanced): claims fluctuate around non-zero prevalence
   3. Amplification-dominant: alpha * A > sum(gamma_i) — false claims converge to high prevalence
+
+Critical threshold: A ≈ 0.4 separates correction-dominant from amplification-dominant regimes.
+
+Verification asymmetry (paper Section 3):
+  A(t) grows because the cost-to-verify / cost-to-generate ratio (VA) is monotonically
+  increasing in claim complexity. The verification_asymmetry_factor in SimParams scales
+  A_growth for sensitivity analysis: higher VA → faster delegation growth → earlier bifurcation.
+
+Epistemic drift (paper Section 9.4):
+  D(t) = dA/dt * (alpha * T_hat(t) - sum(gamma_i))
+  D(t) > 0 across a simulation indicates the governance target D(t) ≤ 0 is not met.
 """
 
 import json
@@ -45,6 +58,9 @@ class SimParams:
     gamma_human: float = 0.05       # human editorial
     P_initial: float = 0.1    # initial prevalence of false claim
     T_steps: int = 100         # number of time steps
+    verification_asymmetry_factor: float = 1.0  # scales A_growth to model VA dynamics
+                                                 # (paper Section 3); 1.0 = baseline,
+                                                 # >1.0 = faster delegation due to high VA
 
 
 @dataclass
@@ -65,6 +81,38 @@ class SimResult:
             return "amplification_dominant"
         else:
             return "oscillatory"
+
+    def epistemic_drift_rate(self) -> list[float]:
+        """
+        Compute D(t) at each time step (paper Section 9.4):
+          D(t) = dA/dt * (alpha * T_hat(t) - gamma_total)
+
+        D(t) > 0: system drifting toward lower epistemic quality (amplification exceeds correction).
+        D(t) <= 0: governance target met (correction matches or exceeds amplification growth).
+        D(t) averaged over the simulation provides a summary scalar for regime comparison.
+        """
+        if not self.confidence or not self.autonomy:
+            return []
+        gamma_total = (
+            self.params.gamma_factcheck
+            + self.params.gamma_credibility
+            + self.params.gamma_reranking
+            + self.params.gamma_human
+        )
+        effective_a_growth = (
+            self.params.A_growth
+            * self.params.verification_asymmetry_factor
+            / self.params.T_steps
+        )
+        return [
+            effective_a_growth * (self.params.alpha * t_hat - gamma_total)
+            for t_hat in self.confidence
+        ]
+
+    def mean_epistemic_drift(self) -> float:
+        """Mean D(t) over the simulation. Positive = net epistemic drift; negative = net correction."""
+        rates = self.epistemic_drift_rate()
+        return sum(rates) / len(rates) if rates else 0.0
 
 
 def sigmoid(x: float) -> float:
@@ -99,7 +147,9 @@ def simulate(params: SimParams) -> SimResult:
         result.autonomy.append(float(A))
 
         P = P_new
-        A = min(params.A_max, A + params.A_growth / params.T_steps)
+        # A grows at a rate scaled by verification_asymmetry_factor:
+        # higher VA (complex claims, low expert accessibility) → faster delegation growth
+        A = min(params.A_max, A + (params.A_growth * params.verification_asymmetry_factor) / params.T_steps)
 
     result.regime = result.regime_label()
     return result
@@ -203,7 +253,11 @@ def run_simulation():
 
     results = [simulate(p) for p in regime_params]
     for r in results:
-        print(f"  Regime: {r.regime:30s} | Final prevalence: {r.final_prevalence():.3f}")
+        print(
+            f"  Regime: {r.regime:30s} | "
+            f"Final prevalence: {r.final_prevalence():.3f} | "
+            f"Mean epistemic drift D̄: {r.mean_epistemic_drift():.6f}"
+        )
 
     # Save trajectory data
     trajectory_data = []
@@ -215,10 +269,13 @@ def run_simulation():
                 "A_initial": r.params.A_initial,
                 "gamma_total": (r.params.gamma_factcheck + r.params.gamma_credibility
                                 + r.params.gamma_reranking + r.params.gamma_human),
+                "verification_asymmetry_factor": r.params.verification_asymmetry_factor,
             },
             "final_prevalence": r.final_prevalence(),
+            "mean_epistemic_drift": r.mean_epistemic_drift(),
             "prevalence": r.prevalence,
             "confidence": r.confidence,
+            "epistemic_drift": r.epistemic_drift_rate(),
         })
 
     out_dir = Path("simulation/results")
